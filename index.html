@@ -297,6 +297,18 @@ textarea{min-height:90px;resize:vertical;}
     </div>
   </div>
 
+  <div class="question">
+    <div class="q-label"><span class="q-num">12</span>Si vous utilisez WhatsApp pour votre activité, comment est-il configuré ?</div>
+    <div class="opts" id="q-wa-config">
+      <div class="opt" onclick="tog(this)">J'ai un message de bienvenue automatique</div>
+      <div class="opt" onclick="tog(this)">J'ai un catalogue de mes services</div>
+      <div class="opt" onclick="tog(this)">J'ai des étiquettes pour trier mes clients</div>
+      <div class="opt" onclick="tog(this)">J'ai un message d'absence configuré</div>
+      <div class="opt" onclick="tog(this)">Rien de tout ça — c'est basique</div>
+      <div class="opt" onclick="tog(this)">Je n'utilise pas WhatsApp pour le pro</div>
+    </div>
+  </div>
+
   <div class="nav">
     <button class="btn-back" onclick="go(1)">← Retour</button>
     <button class="btn-next" onclick="go(3)">Continuer →</button>
@@ -441,7 +453,29 @@ textarea{min-height:90px;resize:vertical;}
   </div>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">27</span>Avez-vous besoin d'accompagnement administratif ou juridique ?</div>
+    <div class="q-label"><span class="q-num">27</span>Comment accueillez-vous un nouveau client aujourd'hui ?</div>
+    <div class="q-hint">De la signature à la première livraison</div>
+    <div class="opts" id="q-onboarding">
+      <div class="opt" onclick="sel(this,'q-onboarding')">J'ai un process structuré et des documents prêts</div>
+      <div class="opt" onclick="sel(this,'q-onboarding')">J'envoie quelques infos par message</div>
+      <div class="opt" onclick="sel(this,'q-onboarding')">Je gère au cas par cas selon le client</div>
+      <div class="opt" onclick="sel(this,'q-onboarding')">Je n'ai pas encore de process d'accueil</div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-label"><span class="q-num">28</span>Avez-vous déjà utilisé l'intelligence artificielle dans votre travail ?</div>
+    <div class="opts" id="q-ia">
+      <div class="opt" onclick="tog(this)">Oui, pour rédiger du contenu</div>
+      <div class="opt" onclick="tog(this)">Oui, pour répondre à mes emails</div>
+      <div class="opt" onclick="tog(this)">Oui, pour automatiser des tâches</div>
+      <div class="opt" onclick="tog(this)">Non, je ne sais pas comment l'utiliser</div>
+      <div class="opt" onclick="tog(this)">Non, je ne vois pas l'intérêt pour moi</div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-label"><span class="q-num">29</span>Avez-vous besoin d'accompagnement administratif ou juridique ?</div>
     <div class="opts" id="q-admin">
       <div class="opt" onclick="tog(this)">Création de contrats / CGV</div>
       <div class="opt" onclick="tog(this)">Gestion des emails professionnels</div>
@@ -610,6 +644,12 @@ function genMapping() {
 
   const hasWAB = contact.includes('WhatsApp Business');
   const hasWAP = contact.includes('WhatsApp perso');
+  const waConfig = getMany('q-wa-config');
+  const hasWAConfig = waConfig.length && !waConfig.includes('basique') && !waConfig.includes('n'utilise pas');
+  const onboarding = getOne('q-onboarding');
+  const hasOnboarding = onboarding && onboarding.includes('structuré');
+  const ia = getMany('q-ia');
+  const hasIA = ia.length && !ia.includes('Non');
   const hasRDVAuto = rdv === 'Outil de réservation en ligne';
   const hasRDVPapier = rdv.includes('papier') || rdv.includes('appellent');
   const hasLogiciel = fact === 'Logiciel de facturation';
@@ -640,6 +680,9 @@ function genMapping() {
     node('Paiement en ligne', hasStripe ? 'Stripe' : (paie.length ? paie[0] : 'Non défini'), hasStripe ? 'ok' : 'warn'),
     node('Autonomie du système', businessTourne ? 'Tourne sans vous' : 'Dépend de vous', businessTourne ? 'ok' : 'miss'),
     node('Automatisation', auto.length && !auto.includes('Pas pour') ? auto[0] : 'Aucune', auto.length && !auto.includes('Pas pour') ? 'warn' : 'miss'),
+    node('Config. WhatsApp', hasWAConfig ? 'Messages auto + catalogue' : 'Non configuré', hasWAConfig ? 'ok' : (hasWAB ? 'warn' : 'miss')),
+    node('Accueil client', hasOnboarding ? 'Process structuré' : (onboarding ? onboarding.substring(0,30)+'...' : 'Non défini'), hasOnboarding ? 'ok' : 'warn'),
+    node('Intelligence artificielle', hasIA ? 'Déjà utilisée' : 'Non utilisée', hasIA ? 'warn' : 'miss'),
   ];
   document.getElementById('nodes-actuel').innerHTML = actuel.join('');
 
