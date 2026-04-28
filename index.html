@@ -249,6 +249,44 @@ textarea{min-height:90px;resize:vertical;}
   </div>
 
   <div class="question">
+    <div class="q-label"><span class="q-num">11</span>Quel outil centralise votre travail au quotidien ?</div>
+    <div class="q-hint">L'endroit où vous gérez vos tâches, projets, notes, documents...</div>
+    <div class="opts" id="q-central">
+      <div class="opt" onclick="sel(this,'q-central')">Notion</div>
+      <div class="opt" onclick="sel(this,'q-central')">Google Drive / Docs</div>
+      <div class="opt" onclick="sel(this,'q-central')">Excel / Google Sheets</div>
+      <div class="opt" onclick="sel(this,'q-central')">Trello / Asana</div>
+      <div class="opt" onclick="sel(this,'q-central')">WhatsApp / Notes téléphone</div>
+      <div class="opt" onclick="sel(this,'q-central')">Aucun outil centralisé</div>
+      <div class="opt" onclick="sel(this,'q-central')">Tout est dans ma tête</div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-label"><span class="q-num">12</span>Avez-vous des process ou templates en place pour votre activité ?</div>
+    <div class="q-hint">Modèles de messages, procédures de travail, checklists...</div>
+    <div class="opts" id="q-process">
+      <div class="opt" onclick="tog(this)">Modèles de messages / emails</div>
+      <div class="opt" onclick="tog(this)">Templates de devis / contrats</div>
+      <div class="opt" onclick="tog(this)">Checklists de livraison</div>
+      <div class="opt" onclick="tog(this)">Process d'onboarding client</div>
+      <div class="opt" onclick="tog(this)">Procédures internes documentées</div>
+      <div class="opt" onclick="tog(this)">Rien de tout ça pour l'instant</div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-label"><span class="q-num">13</span>Si vous deviez partir en vacances 2 semaines, que se passerait-il ?</div>
+    <div class="q-hint">Cette question révèle si votre business tourne sans vous</div>
+    <div class="opts" id="q-vacances">
+      <div class="opt" onclick="sel(this,'q-vacances')">Tout s'arrêterait complètement</div>
+      <div class="opt" onclick="sel(this,'q-vacances')">Ça tournerait mais avec beaucoup de stress</div>
+      <div class="opt" onclick="sel(this,'q-vacances')">Quelqu'un pourrait prendre le relais partiellement</div>
+      <div class="opt" onclick="sel(this,'q-vacances')">Mon système tourne sans moi</div>
+    </div>
+  </div>
+
+  <div class="question">
     <div class="q-label"><span class="q-num">11</span>Comment recevez-vous vos paiements ?</div>
     <div class="opts" id="q-paie">
       <div class="opt" onclick="tog(this)">Virement bancaire</div>
@@ -272,7 +310,7 @@ textarea{min-height:90px;resize:vertical;}
   <p class="step-sub">Ce bloc révèle souvent les blocages les plus profonds. Répondez honnêtement.</p>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">12</span>Combien d'heures par semaine passez-vous sur des tâches qui ne sont pas votre cœur de métier ?</div>
+    <div class="q-label"><span class="q-num">15</span>Combien d'heures par semaine passez-vous sur des tâches qui ne sont pas votre cœur de métier ?</div>
     <div class="opts" id="q-heures">
       <div class="opt" onclick="sel(this,'q-heures')">Moins de 2h</div>
       <div class="opt" onclick="sel(this,'q-heures')">2 – 5h</div>
@@ -282,7 +320,7 @@ textarea{min-height:90px;resize:vertical;}
   </div>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">13</span>Quelles tâches vous volent le plus d'énergie ?</div>
+    <div class="q-label"><span class="q-num">16</span>Quelles tâches vous volent le plus d'énergie ?</div>
     <div class="opts" id="q-taches">
       <div class="opt" onclick="tog(this)">Répondre aux messages</div>
       <div class="opt" onclick="tog(this)">Gérer les RDV</div>
@@ -295,13 +333,13 @@ textarea{min-height:90px;resize:vertical;}
   </div>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">14</span>Y a-t-il des tâches que vous repoussez sans cesse ?</div>
+    <div class="q-label"><span class="q-num">17</span>Y a-t-il des tâches que vous repoussez sans cesse ?</div>
     <div class="q-hint">Celles qui traînent depuis des semaines...</div>
     <textarea id="q-repousse" placeholder="Ex : relancer les devis, organiser mes fichiers, répondre aux anciens clients..."></textarea>
   </div>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">15</span>Comment vous sentez-vous le dimanche soir en pensant à votre semaine ?</div>
+    <div class="q-label"><span class="q-num">18</span>Comment vous sentez-vous le dimanche soir en pensant à votre semaine ?</div>
     <div class="opts" id="q-feeling">
       <div class="opt" onclick="sel(this,'q-feeling')">😌 Serein·e et organisé·e</div>
       <div class="opt" onclick="sel(this,'q-feeling')">😐 Ça va, mais c'est tendu</div>
@@ -323,18 +361,18 @@ textarea{min-height:90px;resize:vertical;}
   <p class="step-sub">Ces questions nous permettent d'aller à l'essentiel — pas aux symptômes.</p>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">16</span>Qu'est-ce qui vous a poussé·e à remplir ce questionnaire aujourd'hui ?</div>
+    <div class="q-label"><span class="q-num">19</span>Qu'est-ce qui vous a poussé·e à remplir ce questionnaire aujourd'hui ?</div>
     <div class="q-hint">Qu'est-ce qui a déclenché cette démarche ?</div>
     <textarea id="q-declencheur" placeholder="Ex : j'ai failli rater un client important, je n'arrive plus à suivre..."></textarea>
   </div>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">17</span>Si vous pouviez déléguer une seule chose dès demain, ce serait quoi ?</div>
+    <div class="q-label"><span class="q-num">20</span>Si vous pouviez déléguer une seule chose dès demain, ce serait quoi ?</div>
     <textarea id="q-deleguer" placeholder="La première chose qui vous vient..."></textarea>
   </div>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">18</span>Quel est votre objectif principal dans les 3 prochains mois ?</div>
+    <div class="q-label"><span class="q-num">21</span>Quel est votre objectif principal dans les 3 prochains mois ?</div>
     <div class="opts" id="q-obj">
       <div class="opt" onclick="sel(this,'q-obj')">Gagner du temps au quotidien</div>
       <div class="opt" onclick="sel(this,'q-obj')">Avoir plus de clients</div>
@@ -346,7 +384,7 @@ textarea{min-height:90px;resize:vertical;}
   </div>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">19</span>Pour vous, un "business qui tourne" ça ressemble à quoi concrètement ?</div>
+    <div class="q-label"><span class="q-num">22</span>Pour vous, un "business qui tourne" ça ressemble à quoi concrètement ?</div>
     <textarea id="q-vision" placeholder="Décrivez votre idéal..."></textarea>
   </div>
 
@@ -363,7 +401,7 @@ textarea{min-height:90px;resize:vertical;}
   <p class="step-sub">Au-delà de ce qu'on a déjà vu, d'autres services ou outils pourraient transformer votre quotidien.</p>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">20</span>Avez-vous des besoins en création de contenu ?</div>
+    <div class="q-label"><span class="q-num">23</span>Avez-vous des besoins en création de contenu ?</div>
     <div class="opts" id="q-contenu">
       <div class="opt" onclick="tog(this)">Rédaction de posts IG / Facebook</div>
       <div class="opt" onclick="tog(this)">Scripts vidéo / TikTok</div>
@@ -375,7 +413,7 @@ textarea{min-height:90px;resize:vertical;}
   </div>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">21</span>Avez-vous des besoins en communication digitale ?</div>
+    <div class="q-label"><span class="q-num">24</span>Avez-vous des besoins en communication digitale ?</div>
     <div class="opts" id="q-comdig">
       <div class="opt" onclick="tog(this)">Publicité Facebook / Instagram</div>
       <div class="opt" onclick="tog(this)">Gestion des réseaux sociaux</div>
@@ -386,7 +424,7 @@ textarea{min-height:90px;resize:vertical;}
   </div>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">22</span>Avez-vous des besoins en automatisation ou intelligence artificielle ?</div>
+    <div class="q-label"><span class="q-num">25</span>Avez-vous des besoins en automatisation ou intelligence artificielle ?</div>
     <div class="opts" id="q-auto">
       <div class="opt" onclick="tog(this)">Automatiser mes relances clients</div>
       <div class="opt" onclick="tog(this)">Mettre en place un agent IA</div>
@@ -397,13 +435,13 @@ textarea{min-height:90px;resize:vertical;}
   </div>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">23</span>Y a-t-il un outil ou un service spécifique que vous cherchez à mettre en place ?</div>
+    <div class="q-label"><span class="q-num">26</span>Y a-t-il un outil ou un service spécifique que vous cherchez à mettre en place ?</div>
     <div class="q-hint">Notion, Stripe, Calendly, un CRM, un site web... tout ce qui vous vient</div>
     <textarea id="q-outil-specifique" placeholder="Décrivez librement..."></textarea>
   </div>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">24</span>Avez-vous besoin d'accompagnement administratif ou juridique ?</div>
+    <div class="q-label"><span class="q-num">27</span>Avez-vous besoin d'accompagnement administratif ou juridique ?</div>
     <div class="opts" id="q-admin">
       <div class="opt" onclick="tog(this)">Création de contrats / CGV</div>
       <div class="opt" onclick="tog(this)">Gestion des emails professionnels</div>
@@ -426,7 +464,7 @@ textarea{min-height:90px;resize:vertical;}
   <p class="step-sub">Dernière étape — et votre mapping apparaît.</p>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">25</span>Avez-vous déjà travaillé avec une assistante virtuelle ou un prestataire digital ?</div>
+    <div class="q-label"><span class="q-num">28</span>Avez-vous déjà travaillé avec une assistante virtuelle ou un prestataire digital ?</div>
     <div class="opts" id="q-av">
       <div class="opt" onclick="sel(this,'q-av')">Oui, bonne expérience</div>
       <div class="opt" onclick="sel(this,'q-av')">Oui, mais décevant</div>
@@ -435,7 +473,7 @@ textarea{min-height:90px;resize:vertical;}
   </div>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">26</span>Votre budget mensuel pour structurer votre activité ?</div>
+    <div class="q-label"><span class="q-num">29</span>Votre budget mensuel pour structurer votre activité ?</div>
     <div class="opts" id="q-budget">
       <div class="opt" onclick="sel(this,'q-budget')">Moins de 100 €</div>
       <div class="opt" onclick="sel(this,'q-budget')">100 – 300 €</div>
@@ -446,7 +484,7 @@ textarea{min-height:90px;resize:vertical;}
   </div>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">27</span>Si on trouve la bonne solution, vous êtes prêt·e à démarrer quand ?</div>
+    <div class="q-label"><span class="q-num">30</span>Si on trouve la bonne solution, vous êtes prêt·e à démarrer quand ?</div>
     <div class="opts" id="q-timing">
       <div class="opt" onclick="sel(this,'q-timing')">Immédiatement</div>
       <div class="opt" onclick="sel(this,'q-timing')">Dans le mois</div>
@@ -456,12 +494,12 @@ textarea{min-height:90px;resize:vertical;}
   </div>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">28</span>Votre email pour recevoir le récapitulatif</div>
+    <div class="q-label"><span class="q-num">31</span>Votre email pour recevoir le récapitulatif</div>
     <input type="email" id="q-email" placeholder="votre@email.com">
   </div>
 
   <div class="question">
-    <div class="q-label"><span class="q-num">29</span>Un dernier mot ? Ce que vous voulez qu'on sache</div>
+    <div class="q-label"><span class="q-num">32</span>Un dernier mot ? Ce que vous voulez qu'on sache</div>
     <textarea id="q-libre" placeholder="Tout ce qui n'a pas été couvert dans ce questionnaire..."></textarea>
   </div>
 
@@ -583,6 +621,13 @@ function genMapping() {
   const hasStripe = paie.includes('Stripe');
   const hasEpuise = feeling.includes('Épuisé') || feeling.includes('Stressé');
 
+  const central = getOne('q-central');
+  const process = getMany('q-process');
+  const vacances = getOne('q-vacances');
+  const hasCentral = central && !central.includes('tête') && !central.includes('Aucun');
+  const hasProcess = process.length && !process.includes('Rien');
+  const businessTourne = vacances.includes('tourne sans moi');
+
   // Système actuel
   const actuel = [
     node('Contact client', contact.length ? contact.slice(0,2).join(', ') : 'Non défini', hasWAB ? 'ok' : (hasWAP ? 'warn' : 'miss')),
@@ -590,8 +635,10 @@ function genMapping() {
     node('Facturation', fact || 'Non définie', hasLogiciel ? 'ok' : (hasNoFact ? 'miss' : 'warn')),
     node('Présence sociale', presence.length ? presence.slice(0,2).join(', ') : 'Aucune', (hasFBPro || hasIGPro) ? 'ok' : 'warn'),
     node('Suivi clients', crm || 'Aucun', hasCRM ? 'ok' : 'miss'),
-    node('Site web', hasWebsite ? 'En place' : 'Absent', hasWebsite ? 'ok' : 'miss'),
+    node('Outil central', central || 'Aucun', hasCentral ? (central.includes('Notion') ? 'ok' : 'warn') : 'miss'),
+    node('Process & templates', hasProcess ? process.slice(0,2).join(', ') : 'Aucun', hasProcess ? 'warn' : 'miss'),
     node('Paiement en ligne', hasStripe ? 'Stripe' : (paie.length ? paie[0] : 'Non défini'), hasStripe ? 'ok' : 'warn'),
+    node('Autonomie du système', businessTourne ? 'Tourne sans vous' : 'Dépend de vous', businessTourne ? 'ok' : 'miss'),
     node('Automatisation', auto.length && !auto.includes('Pas pour') ? auto[0] : 'Aucune', auto.length && !auto.includes('Pas pour') ? 'warn' : 'miss'),
   ];
   document.getElementById('nodes-actuel').innerHTML = actuel.join('');
