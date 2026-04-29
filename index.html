@@ -556,13 +556,14 @@ function has(arr, str) {
 }
 
 function tab(id, btn) {
+  var panelMap = {'a':'pa','p':'pp','b':'pb2','c':'pc'};
   var panels = ['pa','pp','pb2','pc'];
   for (var i = 0; i < panels.length; i++) {
     document.getElementById(panels[i]).classList.remove('active');
   }
   var tabs = document.querySelectorAll('.mt');
   for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('sel');
-  document.getElementById('p' + id).classList.add('active');
+  document.getElementById(panelMap[id]).classList.add('active');
   btn.classList.add('sel');
 }
 
@@ -575,11 +576,12 @@ function pb(title, desc, badge, color) {
 }
 
 function sendToFormspree(data) {
-  fetch('https://formspree.io/f/mnjlebyw', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-    body: JSON.stringify(data)
-  });
+  data['_subject'] = 'Nouveau questionnaire - ' + (data['Prenom'] || 'Client') + ' - Nendy Services';
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://formspree.io/f/mnjlebyw', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.send(JSON.stringify(data));
 }
 
 function genMap() {
