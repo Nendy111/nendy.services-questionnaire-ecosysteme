@@ -3,751 +3,720 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Questionnaire Écosystème — Nendy Services</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Questionnaire — Nendy Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Jost:wght@300;400;500&family=DM+Mono&display=swap" rel="stylesheet">
 <style>
-:root { --v:#7b9a80;--vc:#b5c1a6;--b:#d8c79e;--cr:#f5f1e6;--f:#ee07a5;--txt:#1a1714;--txt2:#5c5248; }
+:root{--v:#7b9a80;--vc:#b5c1a6;--b:#d8c79e;--cr:#f5f1e6;--f:#ee07a5;--txt:#1a1714;--txt2:#5c5248;}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Jost',sans-serif;background:var(--cr);color:var(--txt);min-height:100vh;}
-
-.header{padding:28px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(123,154,128,.15);background:white;}
-.logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--txt);}
-.logo span{color:var(--v);}
-.logo-sub{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:3px;color:var(--b);display:block;margin-top:2px;}
-.progress-bar{flex:1;max-width:280px;margin:0 40px;}
-.progress-track{height:2px;background:rgba(123,154,128,.15);border-radius:2px;overflow:hidden;}
-.progress-fill{height:100%;background:var(--f);border-radius:2px;transition:width .5s ease;}
-.progress-txt{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--txt2);margin-bottom:6px;}
-
-.container{max-width:680px;margin:0 auto;padding:60px 40px;}
-.step{display:none;animation:fadeIn .4s ease;}
-.step.active{display:block;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
-
-.step-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--f);text-transform:uppercase;margin-bottom:10px;}
-.step-title{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,36px);font-weight:700;line-height:1.2;margin-bottom:10px;}
-.step-title span{color:var(--v);}
-.step-sub{font-size:15px;color:var(--txt2);line-height:1.7;margin-bottom:40px;}
-
-.question{margin-bottom:30px;}
-.q-label{font-size:14px;font-weight:500;color:var(--txt);margin-bottom:8px;display:flex;align-items:flex-start;gap:8px;line-height:1.5;}
-.q-num{font-family:'DM Mono',monospace;font-size:8px;color:white;background:var(--v);padding:2px 7px;border-radius:8px;flex-shrink:0;margin-top:2px;}
-.q-hint{font-size:12px;color:var(--txt2);margin-bottom:8px;margin-top:-4px;font-style:italic;}
-
-input[type=text],input[type=email],textarea,select{width:100%;padding:13px 16px;border:1.5px solid rgba(123,154,128,.25);border-radius:10px;font-family:'Jost',sans-serif;font-size:14px;background:white;color:var(--txt);outline:none;transition:border-color .2s;}
+body{font-family:'Jost',sans-serif;background:var(--cr);color:var(--txt);}
+header{background:#fff;border-bottom:1px solid rgba(123,154,128,.15);padding:18px 36px;display:flex;align-items:center;gap:20px;position:sticky;top:0;z-index:99;}
+.logo{font-family:'Playfair Display',serif;font-size:15px;color:var(--v);}
+.logo small{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:3px;color:var(--b);display:block;}
+.prog-wrap{flex:1;max-width:260px;}
+.prog-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;color:var(--txt2);margin-bottom:5px;}
+.prog-track{height:2px;background:rgba(123,154,128,.15);border-radius:2px;}
+.prog-bar{height:2px;background:var(--f);border-radius:2px;width:14%;transition:width .4s;}
+.htag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;color:var(--vc);}
+main{max-width:620px;margin:0 auto;padding:52px 28px;}
+.step{display:none;}
+.step.active{display:block;animation:fade .3s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+.bloc-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--f);text-transform:uppercase;margin-bottom:8px;}
+h1,h2{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,34px);line-height:1.2;margin-bottom:8px;}
+h1 span,h2 span{color:var(--v);}
+.sub{font-size:14px;color:var(--txt2);line-height:1.7;margin-bottom:34px;}
+.q{margin-bottom:24px;}
+.ql{font-size:13px;font-weight:500;color:var(--txt);margin-bottom:7px;display:flex;gap:8px;align-items:flex-start;line-height:1.5;}
+.qn{font-family:'DM Mono',monospace;font-size:8px;color:#fff;background:var(--v);padding:2px 7px;border-radius:5px;flex-shrink:0;margin-top:2px;}
+.qh{font-size:11px;color:var(--txt2);font-style:italic;margin:-3px 0 7px 0;}
+input[type=text],input[type=email],textarea{width:100%;padding:12px 14px;border:1.5px solid rgba(123,154,128,.2);border-radius:9px;font-family:'Jost',sans-serif;font-size:13px;background:#fff;color:var(--txt);outline:none;transition:border .2s;}
 input:focus,textarea:focus{border-color:var(--v);}
-textarea{min-height:90px;resize:vertical;}
-
-.opts{display:flex;flex-wrap:wrap;gap:8px;}
-.opt{cursor:pointer;padding:9px 16px;border:1.5px solid rgba(123,154,128,.25);border-radius:24px;font-size:13px;color:var(--txt2);background:white;transition:all .15s;user-select:none;}
+textarea{min-height:78px;resize:vertical;}
+.opts{display:flex;flex-wrap:wrap;gap:7px;}
+.opt{padding:8px 15px;border:1.5px solid rgba(123,154,128,.2);border-radius:20px;font-size:12px;color:var(--txt2);background:#fff;cursor:pointer;transition:all .15s;user-select:none;}
 .opt:hover{border-color:var(--v);color:var(--v);}
-.opt.sel{border-color:var(--v);background:var(--v);color:white;}
-
-.nav{display:flex;justify-content:space-between;align-items:center;margin-top:50px;padding-top:28px;border-top:1px solid rgba(123,154,128,.12);}
-.btn-back{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--txt2);background:none;border:none;cursor:pointer;}
-.btn-next{display:flex;align-items:center;gap:8px;background:var(--txt);color:white;border:none;border-radius:10px;padding:13px 26px;cursor:pointer;font-family:'Jost',sans-serif;font-size:14px;font-weight:500;transition:transform .2s;}
-.btn-next:hover{transform:translateY(-2px);}
-.btn-next.pink{background:var(--f);}
-
-/* MAPPING RÉSULTAT */
+.opt.sel{background:var(--v);border-color:var(--v);color:#fff;}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:40px;padding-top:22px;border-top:1px solid rgba(123,154,128,.1);}
+.bbk{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--txt2);background:none;border:none;cursor:pointer;}
+.bnx{display:inline-flex;align-items:center;gap:8px;background:var(--txt);color:#fff;border:none;border-radius:9px;padding:12px 24px;font-family:'Jost',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:transform .15s;}
+.bnx:hover{transform:translateY(-2px);}
+.bpink{background:var(--f);}
+.flow{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:34px;flex-wrap:wrap;}
+.fi{display:flex;flex-direction:column;align-items:center;gap:5px;}
+.fic{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(123,154,128,.25);background:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.fil{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:1px;color:var(--txt2);text-align:center;}
+.farr{color:var(--vc);font-size:16px;margin-top:-14px;}
 #result{display:none;}
-.m-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
-.m-tab{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;padding:7px 16px;border-radius:20px;border:1px solid rgba(123,154,128,.3);background:transparent;color:var(--txt2);cursor:pointer;transition:all .15s;}
-.m-tab.active{background:var(--v);color:white;border-color:var(--v);}
-.mapping-box{background:white;border-radius:18px;border:1px solid rgba(123,154,128,.15);overflow:hidden;}
-.m-panel{display:none;padding:24px;}
-.m-panel.active{display:block;}
-
-.leg{display:flex;gap:14px;margin-bottom:16px;flex-wrap:wrap;}
-.leg-item{display:flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:9px;color:var(--txt2);}
-.leg-dot{width:8px;height:8px;border-radius:50%;}
-
-.nodes{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.node{padding:14px 16px;border-radius:12px;border:1.5px solid;}
-.node.ok{background:#f0f8f2;border-color:#1D9E75;}
-.node.warn{background:#fef9ee;border-color:#BA7517;}
-.node.miss{background:#fff0f4;border-color:#ee07a5;border-style:dashed;}
-.node-title{font-size:13px;font-weight:500;margin-bottom:2px;}
-.node.ok .node-title{color:#085041;}
-.node.warn .node-title{color:#412402;}
-.node.miss .node-title{color:#7a0040;}
-.node-sub{font-family:'DM Mono',monospace;font-size:9px;}
-.node.ok .node-sub{color:#0F6E56;}
-.node.warn .node-sub{color:#854F0B;}
-.node.miss .node-sub{color:#ee07a5;}
-
-.prob{display:flex;align-items:flex-start;gap:10px;padding:13px 15px;background:#fafafa;border-radius:10px;border:1px solid rgba(123,154,128,.1);margin-bottom:8px;}
-.prob-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px;}
-.prob-title{font-size:13px;font-weight:500;color:var(--txt);margin-bottom:2px;}
-.prob-desc{font-size:12px;color:var(--txt2);line-height:1.5;}
-.prob-badge{font-family:'DM Mono',monospace;font-size:8px;padding:2px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px;}
-
-
-
-.intro-steps{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin-bottom:40px;}
-.i-step{display:flex;flex-direction:column;align-items:center;gap:6px;}
-.i-icon{width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(123,154,128,.25);background:white;display:flex;align-items:center;justify-content:center;font-size:20px;}
-.i-lbl{font-family:'DM Mono',monospace;font-size:8px;color:var(--txt2);letter-spacing:1px;text-align:center;}
-.i-arrow{color:var(--vc);font-size:18px;margin-top:-16px;}
-
-@media(max-width:600px){
-  .header{padding:16px 20px;flex-wrap:wrap;gap:14px;}
-  .container{padding:40px 20px;}
-  .nodes{grid-template-columns:1fr;}
-  .progress-bar{order:3;flex:100%;margin:0;max-width:none;}
+.rc{text-align:center;margin-bottom:38px;}
+.mtabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px;}
+.mt{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1.5px;padding:6px 14px;border-radius:16px;border:1px solid rgba(123,154,128,.25);background:transparent;color:var(--txt2);cursor:pointer;transition:all .15s;}
+.mt.sel{background:var(--v);color:#fff;border-color:var(--v);}
+.mbox{background:#fff;border-radius:16px;border:1px solid rgba(123,154,128,.12);}
+.mp{display:none;padding:22px;}
+.mp.active{display:block;}
+.leg{display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
+.li{display:flex;align-items:center;gap:4px;font-family:'DM Mono',monospace;font-size:8px;color:var(--txt2);}
+.ld{width:7px;height:7px;border-radius:50%;}
+.nodes{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.nd{padding:12px 14px;border-radius:10px;border:1.5px solid;}
+.nd.ok{background:#f0f8f2;border-color:#1D9E75;}
+.nd.warn{background:#fef9ee;border-color:#BA7517;}
+.nd.miss{background:#fff0f4;border-color:#ee07a5;border-style:dashed;}
+.nt{font-size:12px;font-weight:500;margin-bottom:1px;}
+.nd.ok .nt{color:#085041;}
+.nd.warn .nt{color:#412402;}
+.nd.miss .nt{color:#7a0040;}
+.ns{font-family:'DM Mono',monospace;font-size:8px;}
+.nd.ok .ns{color:#0F6E56;}
+.nd.warn .ns{color:#854F0B;}
+.nd.miss .ns{color:#ee07a5;}
+.pb{display:flex;align-items:flex-start;gap:9px;padding:12px 14px;background:#fafafa;border-radius:9px;border:1px solid rgba(123,154,128,.08);margin-bottom:7px;}
+.pd{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.pt{font-size:12px;font-weight:500;color:var(--txt);margin-bottom:2px;}
+.ps{font-size:11px;color:var(--txt2);line-height:1.5;}
+.pg{font-family:'DM Mono',monospace;font-size:7px;padding:2px 7px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px;}
+.endbox{background:var(--txt);border-radius:14px;padding:26px;text-align:center;margin-top:18px;}
+.endbox h3{font-family:'Playfair Display',serif;font-size:20px;color:#fff;margin-bottom:8px;}
+.endbox p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.7;}
+@media(max-width:560px){header{padding:14px 18px;flex-wrap:wrap;gap:10px;}.prog-wrap{order:3;flex:100%;max-width:none;}main{padding:36px 18px;}.nodes{grid-template-columns:1fr;}}
+@media(prefers-color-scheme:dark){
+  body{background:#1a1714;color:#f0ece3;}
+  header{background:#221f1c;border-color:rgba(255,255,255,.08);}
+  .logo{color:#b5c1a6;}
+  .prog-lbl,.htag{color:rgba(255,255,255,.4);}
+  .prog-track{background:rgba(255,255,255,.1);}
+  h1,h2{color:#f0ece3;}
+  .sub,.qh{color:rgba(255,255,255,.55);}
+  .ql{color:#f0ece3;}
+  input[type=text],input[type=email],textarea{background:#2a2622;border-color:rgba(255,255,255,.12);color:#f0ece3;}
+  input::placeholder,textarea::placeholder{color:rgba(255,255,255,.3);}
+  input:focus,textarea:focus{border-color:var(--v);}
+  .opt{background:#2a2622;border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.6);}
+  .opt:hover{border-color:var(--v);color:var(--v);}
+  .opt.sel{background:var(--v);border-color:var(--v);color:#fff;}
+  .bbk{color:rgba(255,255,255,.4);}
+  .nav{border-color:rgba(255,255,255,.08);}
+  .mbox{background:#221f1c;border-color:rgba(255,255,255,.08);}
+  .mp{background:#221f1c;}
+  .li{color:rgba(255,255,255,.4);}
+  .nd.ok{background:#0d2016;border-color:#1D9E75;}
+  .nd.warn{background:#1f1608;border-color:#BA7517;}
+  .nd.miss{background:#200810;border-color:#ee07a5;}
+  .nd.ok .nt{color:#4dd68c;}
+  .nd.warn .nt{color:#f0a84a;}
+  .nd.miss .nt{color:#ff6eb4;}
+  .nd.ok .ns{color:#2da862;}
+  .nd.warn .ns{color:#c47820;}
+  .nd.miss .ns{color:#ee07a5;}
+  .pb{background:#2a2622;border-color:rgba(255,255,255,.06);}
+  .pt{color:#f0ece3;}
+  .ps{color:rgba(255,255,255,.5);}
+  .mt{border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.4);}
+  .mt.sel{background:var(--v);color:#fff;border-color:var(--v);}
+  .endbox{background:#2a2622;}
+  .rc .sub{color:rgba(255,255,255,.55);}
+  .bloc-tag{color:var(--f);}
 }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="logo"><span>NENDY</span> Services<span class="logo-sub">Écosystème Digital</span></div>
-  <div class="progress-bar">
-    <div class="progress-txt" id="prog-txt">Étape 1 sur 7</div>
-    <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:14%"></div></div>
+<header>
+  <div class="logo">NENDY Services<small>Questionnaire Ecosysteme</small></div>
+  <div class="prog-wrap">
+    <div class="prog-lbl" id="plbl">Etape 1 sur 7</div>
+    <div class="prog-track"><div class="prog-bar" id="pbar"></div></div>
   </div>
-  <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--vc);letter-spacing:1px;">Questionnaire · Nendy Services</div>
-</div>
+  <div class="htag">Pre-appel · Confidentiel</div>
+</header>
 
-<div class="container">
+<main>
 
-<!-- INTRO -->
-<div class="step active" id="step-0">
-  <div class="step-label">Bienvenue</div>
-  <h1 class="step-title">Cartographions votre<br><span>écosystème digital.</span></h1>
-  <p class="step-sub">5 minutes pour comprendre où vous en êtes. À la fin, vous obtenez une carte visuelle de votre système actuel — et on vous révèle vos 3 priorités lors de votre appel avec Nendy.</p>
-  <div class="intro-steps">
-    <div class="i-step"><div class="i-icon">✍️</div><div class="i-lbl">Vous<br>répondez</div></div>
-    <div class="i-arrow">→</div>
-    <div class="i-step"><div class="i-icon">🗺️</div><div class="i-lbl">On cartographie<br>votre système</div></div>
-    <div class="i-arrow">→</div>
-    <div class="i-step"><div class="i-icon">📞</div><div class="i-lbl">On construit<br>votre plan</div></div>
+<div class="step active" id="s0">
+  <div class="bloc-tag">Bienvenue</div>
+  <h1>Cartographions votre<br><span>ecosysteme digital.</span></h1>
+  <p class="sub">5 minutes pour comprendre ou vous en etes. A la fin, vous obtenez une carte visuelle de votre systeme actuel — on s'en servira comme base pendant notre appel.</p>
+  <div class="flow">
+    <div class="fi"><div class="fic">&#9997;&#65039;</div><div class="fil">Vous<br>repondez</div></div>
+    <div class="farr">&#8594;</div>
+    <div class="fi"><div class="fic">&#128506;&#65039;</div><div class="fil">On cartographie<br>votre systeme</div></div>
+    <div class="farr">&#8594;</div>
+    <div class="fi"><div class="fic">&#128222;</div><div class="fil">On construit<br>votre plan</div></div>
   </div>
-  <div class="nav" style="border:none;padding:0;">
-    <div></div>
-    <button class="btn-next pink" onclick="go(1)">Commencer →</button>
+  <div style="display:flex;justify-content:flex-end;">
+    <button class="bnx bpink" onclick="go(1)">Commencer &#8594;</button>
   </div>
 </div>
 
-<!-- BLOC 1 — VOUS -->
-<div class="step" id="step-1">
-  <div class="step-label">Bloc 01 · Vous & votre activité</div>
-  <h2 class="step-title">Faisons <span>connaissance.</span></h2>
-  <p class="step-sub">Pour personnaliser votre mapping, on a besoin de vous connaître un peu.</p>
+<div class="step" id="s1">
+  <div class="bloc-tag">Bloc 01 · Vous et votre activite</div>
+  <h2>Faisons <span>connaissance.</span></h2>
+  <p class="sub">Pour personnaliser votre mapping, on a besoin de vous connaitre un peu.</p>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">01</span>Votre prénom</div>
-    <input type="text" id="q-prenom" placeholder="Prénom...">
-  </div>
+  <div class="q"><div class="ql"><span class="qn">01</span>Votre prenom</div>
+    <input type="text" id="prenom" placeholder="Prenom..."></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">02</span>Votre activité</div>
-    <div class="q-hint">Soyez précis·e — cela influence directement votre mapping</div>
-    <input type="text" id="q-metier" placeholder="Ex : Naturopathe, Coach en reconversion, Graphiste freelance...">
-  </div>
+  <div class="q"><div class="ql"><span class="qn">02</span>Votre activite</div>
+    <div class="qh">Soyez precis — cela influence votre mapping</div>
+    <input type="text" id="metier" placeholder="Ex : Naturopathe, Coach, Graphiste freelance..."></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">03</span>Depuis combien de temps exercez-vous ?</div>
-    <div class="opts" id="q-anc">
-      <div class="opt" onclick="sel(this,'q-anc')">Moins de 6 mois</div>
-      <div class="opt" onclick="sel(this,'q-anc')">6 mois – 1 an</div>
-      <div class="opt" onclick="sel(this,'q-anc')">1 – 3 ans</div>
-      <div class="opt" onclick="sel(this,'q-anc')">Plus de 3 ans</div>
-      <div class="opt" onclick="sel(this,'q-anc')">Pas encore lancé·e</div>
-    </div>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">03</span>Depuis combien de temps exercez-vous ?</div>
+    <div class="opts" id="g1">
+      <div class="opt" onclick="pick(this,'g1')">Moins de 6 mois</div>
+      <div class="opt" onclick="pick(this,'g1')">6 mois - 1 an</div>
+      <div class="opt" onclick="pick(this,'g1')">1 - 3 ans</div>
+      <div class="opt" onclick="pick(this,'g1')">Plus de 3 ans</div>
+      <div class="opt" onclick="pick(this,'g1')">Pas encore lance</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">04</span>Combien de clients actifs avez-vous en ce moment ?</div>
-    <div class="opts" id="q-clients">
-      <div class="opt" onclick="sel(this,'q-clients')">Aucun pour l'instant</div>
-      <div class="opt" onclick="sel(this,'q-clients')">1 – 3</div>
-      <div class="opt" onclick="sel(this,'q-clients')">4 – 10</div>
-      <div class="opt" onclick="sel(this,'q-clients')">Plus de 10</div>
-    </div>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">04</span>Combien de clients actifs avez-vous ?</div>
+    <div class="opts" id="g2">
+      <div class="opt" onclick="pick(this,'g2')">Aucun</div>
+      <div class="opt" onclick="pick(this,'g2')">1 - 3</div>
+      <div class="opt" onclick="pick(this,'g2')">4 - 10</div>
+      <div class="opt" onclick="pick(this,'g2')">Plus de 10</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">05</span>Comment vos clients vous trouvent-ils aujourd'hui ?</div>
-    <div class="opts" id="q-acq">
-      <div class="opt" onclick="tog(this)">Bouche à oreille</div>
+  <div class="q"><div class="ql"><span class="qn">05</span>Comment vos clients vous trouvent-ils ?</div>
+    <div class="opts" id="g3">
+      <div class="opt" onclick="tog(this)">Bouche a oreille</div>
       <div class="opt" onclick="tog(this)">Instagram</div>
       <div class="opt" onclick="tog(this)">Facebook</div>
-      <div class="opt" onclick="tog(this)">Publicité en ligne</div>
-      <div class="opt" onclick="tog(this)">Réseau professionnel</div>
+      <div class="opt" onclick="tog(this)">Publicite en ligne</div>
+      <div class="opt" onclick="tog(this)">Reseau professionnel</div>
       <div class="opt" onclick="tog(this)">Site web</div>
-      <div class="opt" onclick="tog(this)">Ils ne me trouvent pas encore</div>
-    </div>
-  </div>
+      <div class="opt" onclick="tog(this)">Pas encore</div>
+    </div></div>
 
   <div class="nav">
-    <button class="btn-back" onclick="go(0)">← Retour</button>
-    <button class="btn-next" onclick="go(2)">Continuer →</button>
+    <button class="bbk" onclick="go(0)">&#8592; Retour</button>
+    <button class="bnx" onclick="go(2)">Continuer &#8594;</button>
   </div>
 </div>
 
-<!-- BLOC 2 — OUTILS -->
-<div class="step" id="step-2">
-  <div class="step-label">Bloc 02 · Vos outils actuels</div>
-  <h2 class="step-title">Votre système<br><span>aujourd'hui.</span></h2>
-  <p class="step-sub">Pas de jugement — on veut juste voir ce qui existe vraiment.</p>
+<div class="step" id="s2">
+  <div class="bloc-tag">Bloc 02 · Vos outils actuels</div>
+  <h2>Votre systeme <span>aujourd'hui.</span></h2>
+  <p class="sub">Pas de jugement — on veut juste voir ce qui existe vraiment.</p>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">06</span>Comment vos clients vous contactent-ils ?</div>
-    <div class="opts" id="q-contact">
+  <div class="q"><div class="ql"><span class="qn">06</span>Comment vos clients vous contactent-ils ?</div>
+    <div class="opts" id="g4">
       <div class="opt" onclick="tog(this)">WhatsApp perso</div>
       <div class="opt" onclick="tog(this)">WhatsApp Business</div>
       <div class="opt" onclick="tog(this)">Email</div>
-      <div class="opt" onclick="tog(this)">Téléphone</div>
-      <div class="opt" onclick="tog(this)">DM Instagram</div>
-      <div class="opt" onclick="tog(this)">DM Facebook</div>
+      <div class="opt" onclick="tog(this)">Telephone</div>
+      <div class="opt" onclick="tog(this)">Instagram DM</div>
+      <div class="opt" onclick="tog(this)">Facebook DM</div>
       <div class="opt" onclick="tog(this)">Formulaire de contact</div>
-    </div>
-  </div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">07</span>Comment gérez-vous vos rendez-vous ?</div>
-    <div class="opts" id="q-rdv">
-      <div class="opt" onclick="sel(this,'q-rdv')">Agenda papier</div>
-      <div class="opt" onclick="sel(this,'q-rdv')">Google Calendar (manuel)</div>
-      <div class="opt" onclick="sel(this,'q-rdv')">Outil de réservation en ligne</div>
-      <div class="opt" onclick="sel(this,'q-rdv')">Les clients m'appellent directement</div>
-      <div class="opt" onclick="sel(this,'q-rdv')">Pas de RDV dans mon activité</div>
-    </div>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">07</span>Votre WhatsApp Business est-il configure ?</div>
+    <div class="opts" id="g5">
+      <div class="opt" onclick="tog(this)">Message de bienvenue auto</div>
+      <div class="opt" onclick="tog(this)">Catalogue de services</div>
+      <div class="opt" onclick="tog(this)">Etiquettes clients</div>
+      <div class="opt" onclick="tog(this)">Message d'absence</div>
+      <div class="opt" onclick="tog(this)">Rien de configure</div>
+      <div class="opt" onclick="tog(this)">Je n'utilise pas WA Business</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">08</span>Comment gérez-vous vos devis et factures ?</div>
-    <div class="opts" id="q-fact">
-      <div class="opt" onclick="sel(this,'q-fact')">Word / PDF à la main</div>
-      <div class="opt" onclick="sel(this,'q-fact')">Excel / Google Sheets</div>
-      <div class="opt" onclick="sel(this,'q-fact')">Logiciel de facturation</div>
-      <div class="opt" onclick="sel(this,'q-fact')">Je n'en envoie pas encore</div>
-    </div>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">08</span>Comment gerez-vous vos rendez-vous ?</div>
+    <div class="opts" id="g6">
+      <div class="opt" onclick="pick(this,'g6')">Agenda papier</div>
+      <div class="opt" onclick="pick(this,'g6')">Google Calendar manuel</div>
+      <div class="opt" onclick="pick(this,'g6')">Outil de reservation en ligne</div>
+      <div class="opt" onclick="pick(this,'g6')">Les clients m'appellent</div>
+      <div class="opt" onclick="pick(this,'g6')">Pas de RDV</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">09</span>Quelle est votre présence professionnelle en ligne ?</div>
-    <div class="opts" id="q-presence">
-      <div class="opt" onclick="tog(this)">Page Facebook professionnelle</div>
-      <div class="opt" onclick="tog(this)">Compte Instagram pro</div>
+  <div class="q"><div class="ql"><span class="qn">09</span>Comment envoyez-vous vos devis et factures ?</div>
+    <div class="opts" id="g7">
+      <div class="opt" onclick="pick(this,'g7')">Word / PDF a la main</div>
+      <div class="opt" onclick="pick(this,'g7')">Excel / Google Sheets</div>
+      <div class="opt" onclick="pick(this,'g7')">Logiciel de facturation</div>
+      <div class="opt" onclick="pick(this,'g7')">Pas encore</div>
+    </div></div>
+
+  <div class="q"><div class="ql"><span class="qn">10</span>Votre presence professionnelle en ligne ?</div>
+    <div class="opts" id="g8">
+      <div class="opt" onclick="tog(this)">Page Facebook pro</div>
+      <div class="opt" onclick="tog(this)">Instagram pro</div>
       <div class="opt" onclick="tog(this)">Site web</div>
       <div class="opt" onclick="tog(this)">LinkedIn</div>
-      <div class="opt" onclick="tog(this)">J'utilise mon profil perso</div>
-      <div class="opt" onclick="tog(this)">Aucune présence en ligne</div>
-    </div>
-  </div>
+      <div class="opt" onclick="tog(this)">Profil perso seulement</div>
+      <div class="opt" onclick="tog(this)">Aucune presence</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">10</span>Comment suivez-vous vos clients et prospects ?</div>
-    <div class="opts" id="q-crm">
-      <div class="opt" onclick="sel(this,'q-crm')">Notion / Airtable</div>
-      <div class="opt" onclick="sel(this,'q-crm')">Excel / Google Sheets</div>
-      <div class="opt" onclick="sel(this,'q-crm')">Cahier ou mémoire</div>
-      <div class="opt" onclick="sel(this,'q-crm')">Je ne suis pas encore</div>
-    </div>
-  </div>
-
-  <div class="question">
-    <div class="q-label"><span class="q-num">11</span>Quel outil centralise votre travail au quotidien ?</div>
-    <div class="q-hint">L'endroit où vous gérez vos tâches, projets, notes, documents...</div>
-    <div class="opts" id="q-central">
-      <div class="opt" onclick="sel(this,'q-central')">Notion</div>
-      <div class="opt" onclick="sel(this,'q-central')">Google Drive / Docs</div>
-      <div class="opt" onclick="sel(this,'q-central')">Excel / Google Sheets</div>
-      <div class="opt" onclick="sel(this,'q-central')">Trello / Asana</div>
-      <div class="opt" onclick="sel(this,'q-central')">WhatsApp / Notes téléphone</div>
-      <div class="opt" onclick="sel(this,'q-central')">Aucun outil centralisé</div>
-      <div class="opt" onclick="sel(this,'q-central')">Tout est dans ma tête</div>
-    </div>
-  </div>
-
-  <div class="question">
-    <div class="q-label"><span class="q-num">12</span>Avez-vous des process ou templates en place pour votre activité ?</div>
-    <div class="q-hint">Modèles de messages, procédures de travail, checklists...</div>
-    <div class="opts" id="q-process">
-      <div class="opt" onclick="tog(this)">Modèles de messages / emails</div>
-      <div class="opt" onclick="tog(this)">Templates de devis / contrats</div>
-      <div class="opt" onclick="tog(this)">Checklists de livraison</div>
-      <div class="opt" onclick="tog(this)">Process d'onboarding client</div>
-      <div class="opt" onclick="tog(this)">Procédures internes documentées</div>
-      <div class="opt" onclick="tog(this)">Rien de tout ça pour l'instant</div>
-    </div>
-  </div>
-
-  <div class="question">
-    <div class="q-label"><span class="q-num">13</span>Si vous deviez partir en vacances 2 semaines, que se passerait-il ?</div>
-    <div class="q-hint">Cette question révèle si votre business tourne sans vous</div>
-    <div class="opts" id="q-vacances">
-      <div class="opt" onclick="sel(this,'q-vacances')">Tout s'arrêterait complètement</div>
-      <div class="opt" onclick="sel(this,'q-vacances')">Ça tournerait mais avec beaucoup de stress</div>
-      <div class="opt" onclick="sel(this,'q-vacances')">Quelqu'un pourrait prendre le relais partiellement</div>
-      <div class="opt" onclick="sel(this,'q-vacances')">Mon système tourne sans moi</div>
-    </div>
-  </div>
-
-  <div class="question">
-    <div class="q-label"><span class="q-num">11</span>Comment recevez-vous vos paiements ?</div>
-    <div class="opts" id="q-paie">
+  <div class="q"><div class="ql"><span class="qn">11</span>Comment recevez-vous vos paiements ?</div>
+    <div class="opts" id="g9">
       <div class="opt" onclick="tog(this)">Virement bancaire</div>
       <div class="opt" onclick="tog(this)">PayPal</div>
-      <div class="opt" onclick="tog(this)">Stripe / lien de paiement</div>
-      <div class="opt" onclick="tog(this)">Espèces</div>
-      <div class="opt" onclick="tog(this)">Je ne sais pas encore comment</div>
-    </div>
-  </div>
-
-  <div class="question">
-    <div class="q-label"><span class="q-num">12</span>Si vous utilisez WhatsApp pour votre activité, comment est-il configuré ?</div>
-    <div class="opts" id="q-wa-config">
-      <div class="opt" onclick="tog(this)">J'ai un message de bienvenue automatique</div>
-      <div class="opt" onclick="tog(this)">J'ai un catalogue de mes services</div>
-      <div class="opt" onclick="tog(this)">J'ai des étiquettes pour trier mes clients</div>
-      <div class="opt" onclick="tog(this)">J'ai un message d'absence configuré</div>
-      <div class="opt" onclick="tog(this)">Rien de tout ça — c'est basique</div>
-      <div class="opt" onclick="tog(this)">Je n'utilise pas WhatsApp pour le pro</div>
-    </div>
-  </div>
+      <div class="opt" onclick="tog(this)">Stripe</div>
+      <div class="opt" onclick="tog(this)">Especes</div>
+      <div class="opt" onclick="tog(this)">Pas encore defini</div>
+    </div></div>
 
   <div class="nav">
-    <button class="btn-back" onclick="go(1)">← Retour</button>
-    <button class="btn-next" onclick="go(3)">Continuer →</button>
+    <button class="bbk" onclick="go(1)">&#8592; Retour</button>
+    <button class="bnx" onclick="go(3)">Continuer &#8594;</button>
   </div>
 </div>
 
-<!-- BLOC 3 — ORGANISATION -->
-<div class="step" id="step-3">
-  <div class="step-label">Bloc 03 · Organisation & quotidien</div>
-  <h2 class="step-title">Ce qui se passe<br><span>vraiment</span> chaque jour.</h2>
-  <p class="step-sub">Ce bloc révèle souvent les blocages les plus profonds. Répondez honnêtement.</p>
+<div class="step" id="s3">
+  <div class="bloc-tag">Bloc 03 · Organisation et outils centraux</div>
+  <h2>Comment vous <span>organisez-vous ?</span></h2>
+  <p class="sub">Ce bloc revele souvent les blocages les plus profonds.</p>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">15</span>Combien d'heures par semaine passez-vous sur des tâches qui ne sont pas votre cœur de métier ?</div>
-    <div class="opts" id="q-heures">
-      <div class="opt" onclick="sel(this,'q-heures')">Moins de 2h</div>
-      <div class="opt" onclick="sel(this,'q-heures')">2 – 5h</div>
-      <div class="opt" onclick="sel(this,'q-heures')">5 – 10h</div>
-      <div class="opt" onclick="sel(this,'q-heures')">Plus de 10h — c'est énorme</div>
-    </div>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">12</span>Quel outil centralise votre travail au quotidien ?</div>
+    <div class="qh">Taches, projets, notes, documents...</div>
+    <div class="opts" id="g10">
+      <div class="opt" onclick="pick(this,'g10')">Notion</div>
+      <div class="opt" onclick="pick(this,'g10')">Google Drive / Docs</div>
+      <div class="opt" onclick="pick(this,'g10')">Excel / Google Sheets</div>
+      <div class="opt" onclick="pick(this,'g10')">Trello / Asana</div>
+      <div class="opt" onclick="pick(this,'g10')">WhatsApp / Notes tel</div>
+      <div class="opt" onclick="pick(this,'g10')">Aucun outil centralise</div>
+      <div class="opt" onclick="pick(this,'g10')">Tout dans ma tete</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">16</span>Quelles tâches vous volent le plus d'énergie ?</div>
-    <div class="opts" id="q-taches">
-      <div class="opt" onclick="tog(this)">Répondre aux messages</div>
-      <div class="opt" onclick="tog(this)">Gérer les RDV</div>
-      <div class="opt" onclick="tog(this)">Facturation & relances</div>
-      <div class="opt" onclick="tog(this)">Créer du contenu</div>
-      <div class="opt" onclick="tog(this)">Chercher des clients</div>
-      <div class="opt" onclick="tog(this)">Gérer l'administratif</div>
-      <div class="opt" onclick="tog(this)">Tout à la fois</div>
-    </div>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">13</span>Comment suivez-vous vos clients et prospects ?</div>
+    <div class="opts" id="g11">
+      <div class="opt" onclick="pick(this,'g11')">Notion / Airtable</div>
+      <div class="opt" onclick="pick(this,'g11')">Excel / Google Sheets</div>
+      <div class="opt" onclick="pick(this,'g11')">Cahier ou memoire</div>
+      <div class="opt" onclick="pick(this,'g11')">Aucun suivi</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">17</span>Y a-t-il des tâches que vous repoussez sans cesse ?</div>
-    <div class="q-hint">Celles qui traînent depuis des semaines...</div>
-    <textarea id="q-repousse" placeholder="Ex : relancer les devis, organiser mes fichiers, répondre aux anciens clients..."></textarea>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">14</span>Avez-vous des process ou templates en place ?</div>
+    <div class="opts" id="g12">
+      <div class="opt" onclick="tog(this)">Modeles de messages</div>
+      <div class="opt" onclick="tog(this)">Templates devis / contrats</div>
+      <div class="opt" onclick="tog(this)">Checklists de livraison</div>
+      <div class="opt" onclick="tog(this)">Process onboarding client</div>
+      <div class="opt" onclick="tog(this)">Procedures documentees</div>
+      <div class="opt" onclick="tog(this)">Rien pour le moment</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">18</span>Comment vous sentez-vous le dimanche soir en pensant à votre semaine ?</div>
-    <div class="opts" id="q-feeling">
-      <div class="opt" onclick="sel(this,'q-feeling')">😌 Serein·e et organisé·e</div>
-      <div class="opt" onclick="sel(this,'q-feeling')">😐 Ça va, mais c'est tendu</div>
-      <div class="opt" onclick="sel(this,'q-feeling')">😰 Stressé·e par le volume</div>
-      <div class="opt" onclick="sel(this,'q-feeling')">😩 Épuisé·e avant même de commencer</div>
-    </div>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">15</span>Comment accueillez-vous un nouveau client ?</div>
+    <div class="opts" id="g13">
+      <div class="opt" onclick="pick(this,'g13')">Process structure avec documents prets</div>
+      <div class="opt" onclick="pick(this,'g13')">Quelques infos par message</div>
+      <div class="opt" onclick="pick(this,'g13')">Au cas par cas</div>
+      <div class="opt" onclick="pick(this,'g13')">Pas encore de process</div>
+    </div></div>
+
+  <div class="q"><div class="ql"><span class="qn">16</span>Combien d'heures par semaine sur des taches admin ?</div>
+    <div class="opts" id="g14">
+      <div class="opt" onclick="pick(this,'g14')">Moins de 2h</div>
+      <div class="opt" onclick="pick(this,'g14')">2 - 5h</div>
+      <div class="opt" onclick="pick(this,'g14')">5 - 10h</div>
+      <div class="opt" onclick="pick(this,'g14')">Plus de 10h</div>
+    </div></div>
+
+  <div class="q"><div class="ql"><span class="qn">17</span>Si vous partez 2 semaines en vacances, que se passe-t-il ?</div>
+    <div class="opts" id="g15">
+      <div class="opt" onclick="pick(this,'g15')">Tout s'arrete</div>
+      <div class="opt" onclick="pick(this,'g15')">Ca tourne avec beaucoup de stress</div>
+      <div class="opt" onclick="pick(this,'g15')">Quelqu'un peut prendre le relais</div>
+      <div class="opt" onclick="pick(this,'g15')">Mon systeme tourne sans moi</div>
+    </div></div>
 
   <div class="nav">
-    <button class="btn-back" onclick="go(2)">← Retour</button>
-    <button class="btn-next" onclick="go(4)">Continuer →</button>
+    <button class="bbk" onclick="go(2)">&#8592; Retour</button>
+    <button class="bnx" onclick="go(4)">Continuer &#8594;</button>
   </div>
 </div>
 
-<!-- BLOC 4 — DOULEURS -->
-<div class="step" id="step-4">
-  <div class="step-label">Bloc 04 · Douleurs & vision</div>
-  <h2 class="step-title">Ce que vous <span>ressentez</span><br>vraiment.</h2>
-  <p class="step-sub">Ces questions nous permettent d'aller à l'essentiel — pas aux symptômes.</p>
+<div class="step" id="s4">
+  <div class="bloc-tag">Bloc 04 · Douleurs et vision</div>
+  <h2>Ce que vous <span>ressentez</span> vraiment.</h2>
+  <p class="sub">Ces questions permettent d'aller a l'essentiel — pas aux symptomes.</p>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">19</span>Qu'est-ce qui vous a poussé·e à remplir ce questionnaire aujourd'hui ?</div>
-    <div class="q-hint">Qu'est-ce qui a déclenché cette démarche ?</div>
-    <textarea id="q-declencheur" placeholder="Ex : j'ai failli rater un client important, je n'arrive plus à suivre..."></textarea>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">18</span>Comment vous sentez-vous le dimanche soir ?</div>
+    <div class="opts" id="g16">
+      <div class="opt" onclick="pick(this,'g16')">Serein et organise</div>
+      <div class="opt" onclick="pick(this,'g16')">Ca va mais c'est tendu</div>
+      <div class="opt" onclick="pick(this,'g16')">Stresse par le volume</div>
+      <div class="opt" onclick="pick(this,'g16')">Epuise avant de commencer</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">20</span>Si vous pouviez déléguer une seule chose dès demain, ce serait quoi ?</div>
-    <textarea id="q-deleguer" placeholder="La première chose qui vous vient..."></textarea>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">19</span>Qu'est-ce qui a declenche cette demarche ?</div>
+    <textarea id="declencheur" placeholder="Ex : j'ai failli rater un client, je n'arrive plus a suivre..."></textarea></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">21</span>Quel est votre objectif principal dans les 3 prochains mois ?</div>
-    <div class="opts" id="q-obj">
-      <div class="opt" onclick="sel(this,'q-obj')">Gagner du temps au quotidien</div>
-      <div class="opt" onclick="sel(this,'q-obj')">Avoir plus de clients</div>
-      <div class="opt" onclick="sel(this,'q-obj')">Paraître plus professionnel·le</div>
-      <div class="opt" onclick="sel(this,'q-obj')">Automatiser mes process</div>
-      <div class="opt" onclick="sel(this,'q-obj')">Pouvoir déléguer sereinement</div>
-      <div class="opt" onclick="sel(this,'q-obj')">Tout ça à la fois</div>
-    </div>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">20</span>Si vous pouviez deleguer une seule chose demain ?</div>
+    <textarea id="deleguer" placeholder="La premiere chose qui vous vient..."></textarea></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">22</span>Pour vous, un "business qui tourne" ça ressemble à quoi concrètement ?</div>
-    <textarea id="q-vision" placeholder="Décrivez votre idéal..."></textarea>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">21</span>Votre objectif principal dans les 3 prochains mois ?</div>
+    <div class="opts" id="g17">
+      <div class="opt" onclick="pick(this,'g17')">Gagner du temps</div>
+      <div class="opt" onclick="pick(this,'g17')">Avoir plus de clients</div>
+      <div class="opt" onclick="pick(this,'g17')">Paraitre plus professionnel</div>
+      <div class="opt" onclick="pick(this,'g17')">Automatiser mes process</div>
+      <div class="opt" onclick="pick(this,'g17')">Deleguer sereinement</div>
+      <div class="opt" onclick="pick(this,'g17')">Tout ca a la fois</div>
+    </div></div>
+
+  <div class="q"><div class="ql"><span class="qn">22</span>Pour vous, un business qui tourne c'est quoi ?</div>
+    <textarea id="vision" placeholder="Decrivez votre ideal..."></textarea></div>
 
   <div class="nav">
-    <button class="btn-back" onclick="go(3)">← Retour</button>
-    <button class="btn-next" onclick="go(5)">Continuer →</button>
+    <button class="bbk" onclick="go(3)">&#8592; Retour</button>
+    <button class="bnx" onclick="go(5)">Continuer &#8594;</button>
   </div>
 </div>
 
-<!-- BLOC 5 — BESOINS COMPLEMENTAIRES -->
-<div class="step" id="step-5">
-  <div class="step-label">Bloc 05 · Besoins complémentaires</div>
-  <h2 class="step-title">Y a-t-il d'autres<br><span>besoins</span> à explorer ?</h2>
-  <p class="step-sub">Au-delà de ce qu'on a déjà vu, d'autres services ou outils pourraient transformer votre quotidien.</p>
+<div class="step" id="s5">
+  <div class="bloc-tag">Bloc 05 · Besoins complementaires</div>
+  <h2>D'autres besoins <span>a explorer ?</span></h2>
+  <p class="sub">Au-dela de l'essentiel, d'autres services pourraient transformer votre quotidien.</p>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">23</span>Avez-vous des besoins en création de contenu ?</div>
-    <div class="opts" id="q-contenu">
-      <div class="opt" onclick="tog(this)">Rédaction de posts IG / Facebook</div>
-      <div class="opt" onclick="tog(this)">Scripts vidéo / TikTok</div>
+  <div class="q"><div class="ql"><span class="qn">23</span>Avez-vous utilise l'IA dans votre activite ?</div>
+    <div class="opts" id="g18">
+      <div class="opt" onclick="tog(this)">Oui pour rediger du contenu</div>
+      <div class="opt" onclick="tog(this)">Oui pour automatiser des taches</div>
+      <div class="opt" onclick="tog(this)">Oui pour repondre aux emails</div>
+      <div class="opt" onclick="tog(this)">Non je ne sais pas comment</div>
+      <div class="opt" onclick="tog(this)">Non pas utile pour moi</div>
+    </div></div>
+
+  <div class="q"><div class="ql"><span class="qn">24</span>Besoins en creation de contenu ?</div>
+    <div class="opts" id="g19">
+      <div class="opt" onclick="tog(this)">Posts Instagram / Facebook</div>
+      <div class="opt" onclick="tog(this)">Scripts video / TikTok</div>
       <div class="opt" onclick="tog(this)">Newsletter</div>
-      <div class="opt" onclick="tog(this)">Stratégie éditoriale</div>
-      <div class="opt" onclick="tog(this)">Non, j'ai déjà quelqu'un</div>
-      <div class="opt" onclick="tog(this)">Pas pour l'instant</div>
-    </div>
-  </div>
+      <div class="opt" onclick="tog(this)">Strategie editoriale</div>
+      <div class="opt" onclick="tog(this)">Non j'ai quelqu'un</div>
+      <div class="opt" onclick="tog(this)">Non pas maintenant</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">24</span>Avez-vous des besoins en communication digitale ?</div>
-    <div class="opts" id="q-comdig">
-      <div class="opt" onclick="tog(this)">Publicité Facebook / Instagram</div>
-      <div class="opt" onclick="tog(this)">Gestion des réseaux sociaux</div>
-      <div class="opt" onclick="tog(this)">Création d'une page web / landing page</div>
+  <div class="q"><div class="ql"><span class="qn">25</span>Besoins en communication digitale ?</div>
+    <div class="opts" id="g20">
+      <div class="opt" onclick="tog(this)">Publicite Facebook / Instagram</div>
+      <div class="opt" onclick="tog(this)">Gestion des reseaux sociaux</div>
+      <div class="opt" onclick="tog(this)">Page web / landing page</div>
       <div class="opt" onclick="tog(this)">Email marketing</div>
-      <div class="opt" onclick="tog(this)">Pas pour l'instant</div>
-    </div>
-  </div>
+      <div class="opt" onclick="tog(this)">Non pas maintenant</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">25</span>Avez-vous des besoins en automatisation ou intelligence artificielle ?</div>
-    <div class="opts" id="q-auto">
+  <div class="q"><div class="ql"><span class="qn">26</span>Besoins en automatisation ?</div>
+    <div class="opts" id="g21">
       <div class="opt" onclick="tog(this)">Automatiser mes relances clients</div>
+      <div class="opt" onclick="tog(this)">Connecter mes outils</div>
       <div class="opt" onclick="tog(this)">Mettre en place un agent IA</div>
-      <div class="opt" onclick="tog(this)">Connecter mes outils entre eux</div>
-      <div class="opt" onclick="tog(this)">Je ne sais pas encore ce dont j'ai besoin</div>
-      <div class="opt" onclick="tog(this)">Pas pour l'instant</div>
-    </div>
-  </div>
+      <div class="opt" onclick="tog(this)">Je ne sais pas encore</div>
+      <div class="opt" onclick="tog(this)">Non pas maintenant</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">26</span>Y a-t-il un outil ou un service spécifique que vous cherchez à mettre en place ?</div>
-    <div class="q-hint">Notion, Stripe, Calendly, un CRM, un site web... tout ce qui vous vient</div>
-    <textarea id="q-outil-specifique" placeholder="Décrivez librement..."></textarea>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">27</span>Besoins en accompagnement admin ou juridique ?</div>
+    <div class="opts" id="g22">
+      <div class="opt" onclick="tog(this)">Contrats / CGV</div>
+      <div class="opt" onclick="tog(this)">Gestion emails pro</div>
+      <div class="opt" onclick="tog(this)">Organisation documents</div>
+      <div class="opt" onclick="tog(this)">Recherche de subventions</div>
+      <div class="opt" onclick="tog(this)">Non je gere</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">27</span>Comment accueillez-vous un nouveau client aujourd'hui ?</div>
-    <div class="q-hint">De la signature à la première livraison</div>
-    <div class="opts" id="q-onboarding">
-      <div class="opt" onclick="sel(this,'q-onboarding')">J'ai un process structuré et des documents prêts</div>
-      <div class="opt" onclick="sel(this,'q-onboarding')">J'envoie quelques infos par message</div>
-      <div class="opt" onclick="sel(this,'q-onboarding')">Je gère au cas par cas selon le client</div>
-      <div class="opt" onclick="sel(this,'q-onboarding')">Je n'ai pas encore de process d'accueil</div>
-    </div>
-  </div>
-
-  <div class="question">
-    <div class="q-label"><span class="q-num">28</span>Avez-vous déjà utilisé l'intelligence artificielle dans votre travail ?</div>
-    <div class="opts" id="q-ia">
-      <div class="opt" onclick="tog(this)">Oui, pour rédiger du contenu</div>
-      <div class="opt" onclick="tog(this)">Oui, pour répondre à mes emails</div>
-      <div class="opt" onclick="tog(this)">Oui, pour automatiser des tâches</div>
-      <div class="opt" onclick="tog(this)">Non, je ne sais pas comment l'utiliser</div>
-      <div class="opt" onclick="tog(this)">Non, je ne vois pas l'intérêt pour moi</div>
-    </div>
-  </div>
-
-  <div class="question">
-    <div class="q-label"><span class="q-num">29</span>Avez-vous besoin d'accompagnement administratif ou juridique ?</div>
-    <div class="opts" id="q-admin">
-      <div class="opt" onclick="tog(this)">Création de contrats / CGV</div>
-      <div class="opt" onclick="tog(this)">Gestion des emails professionnels</div>
-      <div class="opt" onclick="tog(this)">Organisation de mes documents</div>
-      <div class="opt" onclick="tog(this)">Recherche de subventions / aides</div>
-      <div class="opt" onclick="tog(this)">Non, je gère</div>
-    </div>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">28</span>Un outil ou service specifique que vous cherchez ?</div>
+    <textarea id="outil" placeholder="Notion, Stripe, Calendly, un CRM, un site web..."></textarea></div>
 
   <div class="nav">
-    <button class="btn-back" onclick="go(4)">← Retour</button>
-    <button class="btn-next" onclick="go(6)">Continuer →</button>
+    <button class="bbk" onclick="go(4)">&#8592; Retour</button>
+    <button class="bnx" onclick="go(6)">Continuer &#8594;</button>
   </div>
 </div>
 
-<!-- BLOC 6 — BUDGET & CONTACT -->
-<div class="step" id="step-6">
-  <div class="step-label">Bloc 06 · Budget & contact</div>
-  <h2 class="step-title">Pour aller plus<br><span>loin ensemble.</span></h2>
-  <p class="step-sub">Dernière étape — et votre mapping apparaît.</p>
+<div class="step" id="s6">
+  <div class="bloc-tag">Bloc 06 · Pour aller plus loin</div>
+  <h2>Derniere <span>etape.</span></h2>
+  <p class="sub">Et votre mapping apparait.</p>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">28</span>Avez-vous déjà travaillé avec une assistante virtuelle ou un prestataire digital ?</div>
-    <div class="opts" id="q-av">
-      <div class="opt" onclick="sel(this,'q-av')">Oui, bonne expérience</div>
-      <div class="opt" onclick="sel(this,'q-av')">Oui, mais décevant</div>
-      <div class="opt" onclick="sel(this,'q-av')">Non, première fois</div>
-    </div>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">29</span>Deja travaille avec une assistante virtuelle ?</div>
+    <div class="opts" id="g23">
+      <div class="opt" onclick="pick(this,'g23')">Oui bonne experience</div>
+      <div class="opt" onclick="pick(this,'g23')">Oui mais decevant</div>
+      <div class="opt" onclick="pick(this,'g23')">Non premiere fois</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">29</span>Votre budget mensuel pour structurer votre activité ?</div>
-    <div class="opts" id="q-budget">
-      <div class="opt" onclick="sel(this,'q-budget')">Moins de 100 €</div>
-      <div class="opt" onclick="sel(this,'q-budget')">100 – 300 €</div>
-      <div class="opt" onclick="sel(this,'q-budget')">300 – 500 €</div>
-      <div class="opt" onclick="sel(this,'q-budget')">500 € et plus</div>
-      <div class="opt" onclick="sel(this,'q-budget')">Pas encore défini</div>
-    </div>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">30</span>Budget mensuel pour structurer votre activite ?</div>
+    <div class="opts" id="g24">
+      <div class="opt" onclick="pick(this,'g24')">Moins de 100 euros</div>
+      <div class="opt" onclick="pick(this,'g24')">100 - 300 euros</div>
+      <div class="opt" onclick="pick(this,'g24')">300 - 500 euros</div>
+      <div class="opt" onclick="pick(this,'g24')">500 euros et plus</div>
+      <div class="opt" onclick="pick(this,'g24')">Pas encore defini</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">30</span>Si on trouve la bonne solution, vous êtes prêt·e à démarrer quand ?</div>
-    <div class="opts" id="q-timing">
-      <div class="opt" onclick="sel(this,'q-timing')">Immédiatement</div>
-      <div class="opt" onclick="sel(this,'q-timing')">Dans le mois</div>
-      <div class="opt" onclick="sel(this,'q-timing')">Dans 2 – 3 mois</div>
-      <div class="opt" onclick="sel(this,'q-timing')">Je cherche encore</div>
-    </div>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">31</span>Vous etes pret a demarrer quand ?</div>
+    <div class="opts" id="g25">
+      <div class="opt" onclick="pick(this,'g25')">Immediatement</div>
+      <div class="opt" onclick="pick(this,'g25')">Dans le mois</div>
+      <div class="opt" onclick="pick(this,'g25')">Dans 2 - 3 mois</div>
+      <div class="opt" onclick="pick(this,'g25')">Je cherche encore</div>
+    </div></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">31</span>Votre email pour recevoir le récapitulatif</div>
-    <input type="email" id="q-email" placeholder="votre@email.com">
-  </div>
+  <div class="q"><div class="ql"><span class="qn">32</span>Votre email</div>
+    <input type="email" id="email" placeholder="votre@email.com"></div>
 
-  <div class="question">
-    <div class="q-label"><span class="q-num">32</span>Un dernier mot ? Ce que vous voulez qu'on sache</div>
-    <textarea id="q-libre" placeholder="Tout ce qui n'a pas été couvert dans ce questionnaire..."></textarea>
-  </div>
+  <div class="q"><div class="ql"><span class="qn">33</span>Un dernier mot ?</div>
+    <textarea id="libre" placeholder="Ce qui n'a pas ete couvert..."></textarea></div>
 
   <div class="nav">
-    <button class="btn-back" onclick="go(5)">← Retour</button>
-    <button class="btn-next pink" onclick="genMapping()">Voir mon mapping 🗺️</button>
+    <button class="bbk" onclick="go(5)">&#8592; Retour</button>
+    <button class="bnx bpink" onclick="genMap()">Voir mon mapping &#128506;</button>
   </div>
 </div>
 
-<!-- RÉSULTAT -->
 <div id="result">
-  <div style="text-align:center;margin-bottom:50px;">
-    <div class="step-label" style="justify-content:center;display:flex;">Résultat · Écosystème digital</div>
-    <h2 class="step-title">Mapping de <span id="res-prenom">votre</span><br>système actuel <span style="color:var(--f);">✦</span></h2>
-    <p class="step-sub" style="max-width:500px;margin:0 auto;">Voici la cartographie complète de votre système. Vos 3 priorités seront détaillées lors de votre appel avec Nendy.</p>
+  <div class="rc">
+    <div class="bloc-tag" style="justify-content:center;display:flex;">Resultat · Ecosysteme digital</div>
+    <h2>Mapping de <span id="rnom">votre</span><br>systeme actuel <span style="color:var(--f)">&#10022;</span></h2>
+    <p class="sub" style="max-width:460px;margin:0 auto;">Voici la cartographie de votre ecosysteme. On l'analysera ensemble lors de votre appel.</p>
   </div>
 
-  <div class="m-tabs">
-    <button class="m-tab active" onclick="showTab('actuel',this)">Système actuel</button>
-    <button class="m-tab" onclick="showTab('problemes',this)">Problèmes identifiés</button>
-    <button class="m-tab" onclick="showTab('besoins',this)">Besoins détectés</button>
-    <button class="m-tab" onclick="showTab('cible',this)">Système cible</button>
+  <div class="mtabs">
+    <button class="mt sel" onclick="tab('a',this)">Systeme actuel</button>
+    <button class="mt" onclick="tab('p',this)">Problemes</button>
+    <button class="mt" onclick="tab('b',this)">Besoins</button>
+    <button class="mt" onclick="tab('c',this)">Systeme cible</button>
   </div>
 
-  <div class="mapping-box">
-    <div class="m-panel active" id="m-actuel">
+  <div class="mbox">
+    <div class="mp active" id="pa">
       <div class="leg">
-        <div class="leg-item"><div class="leg-dot" style="background:#1D9E75"></div>En place</div>
-        <div class="leg-item"><div class="leg-dot" style="background:#BA7517"></div>Partiel</div>
-        <div class="leg-item"><div class="leg-dot" style="background:#ee07a5"></div>Absent</div>
+        <div class="li"><div class="ld" style="background:#1D9E75"></div>En place</div>
+        <div class="li"><div class="ld" style="background:#BA7517"></div>Partiel</div>
+        <div class="li"><div class="ld" style="background:#ee07a5"></div>Absent</div>
       </div>
-      <div class="nodes" id="nodes-actuel"></div>
+      <div class="nodes" id="na"></div>
     </div>
-    <div class="m-panel" id="m-problemes">
-      <div id="nodes-problemes"></div>
-    </div>
-    <div class="m-panel" id="m-besoins">
-      <div id="nodes-besoins"></div>
-    </div>
-    <div class="m-panel" id="m-cible">
-      <div class="leg"><div class="leg-item"><div class="leg-dot" style="background:#1D9E75"></div>Après Nendy Services</div></div>
-      <div class="nodes" id="nodes-cible"></div>
+    <div class="mp" id="pp"><div id="np"></div></div>
+    <div class="mp" id="pb2"><div id="nb"></div></div>
+    <div class="mp" id="pc">
+      <div class="leg"><div class="li"><div class="ld" style="background:#1D9E75"></div>Apres Nendy Services</div></div>
+      <div class="nodes" id="nc"></div>
     </div>
   </div>
 
-  <div style="background:var(--txt);border-radius:16px;padding:28px;text-align:center;margin-top:20px;">
-    <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:white;margin-bottom:10px;">Merci <span id="res-prenom2"></span> 🌿</h3>
-    <p style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.7;">Votre mapping est prêt. Nendy l'analysera avec vous lors de votre appel — on construira ensemble votre plan d'action personnalisé.</p>
+  <div class="endbox">
+    <h3>Merci <span id="rnom2"></span> &#127807;</h3>
+    <p>Votre mapping est pret. Nendy l'analysera avec vous lors de votre appel — on construira ensemble votre plan d'action personnalise.</p>
   </div>
 </div>
 
-</div><!-- /container -->
+</main>
 
 <script>
-let cur = 0;
-const total = 7;
+var cur = 0;
+var tot = 7;
 
 function go(n) {
-  document.getElementById('step-'+cur).classList.remove('active');
+  document.getElementById('s' + cur).classList.remove('active');
   cur = n;
-  if(n < total) {
-    document.getElementById('step-'+n).classList.add('active');
+  if (n < tot) {
+    document.getElementById('s' + n).classList.add('active');
   }
-  const pct = Math.round(((n+1)/total)*100);
-  document.getElementById('prog-fill').style.width = pct+'%';
-  document.getElementById('prog-txt').textContent = 'Étape '+(n+1)+' sur '+total;
-  window.scrollTo(0,0);
+  var pct = Math.round(((n + 1) / tot) * 100);
+  document.getElementById('pbar').style.width = pct + '%';
+  document.getElementById('plbl').textContent = 'Etape ' + (n + 1) + ' sur ' + tot;
+  window.scrollTo(0, 0);
 }
 
-function sel(el, grp) {
-  document.querySelectorAll('#'+grp+' .opt').forEach(o=>o.classList.remove('sel'));
+function pick(el, gid) {
+  var all = document.querySelectorAll('#' + gid + ' .opt');
+  for (var i = 0; i < all.length; i++) all[i].classList.remove('sel');
   el.classList.add('sel');
 }
-function tog(el){ el.classList.toggle('sel'); }
-function getOne(id){ const s=document.querySelector('#'+id+' .opt.sel'); return s?s.textContent:''; }
-function getMany(id){ return Array.from(document.querySelectorAll('#'+id+' .opt.sel')).map(o=>o.textContent); }
-function val(id){ const el=document.getElementById(id); return el?el.value:''; }
 
-function showTab(id, btn) {
-  document.querySelectorAll('.m-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.m-tab').forEach(b=>b.classList.remove('active'));
-  document.getElementById('m-'+id).classList.add('active');
-  btn.classList.add('active');
+function tog(el) {
+  el.classList.toggle('sel');
 }
 
-function node(label, sub, status) {
-  return `<div class="node ${status}"><div class="node-title">${label}</div><div class="node-sub">${sub}</div></div>`;
-}
-function prob(title, desc, urgence, color) {
-  return `<div class="prob"><div class="prob-dot" style="background:${color}"></div><div><div class="prob-title">${title}</div><div class="prob-desc">${desc}</div></div><div class="prob-badge" style="background:${color}18;color:${color}">${urgence}</div></div>`;
+function gOne(gid) {
+  var s = document.querySelector('#' + gid + ' .opt.sel');
+  return s ? s.textContent.trim() : '';
 }
 
-function genMapping() {
-  const prenom = val('q-prenom') || 'votre';
-  const contact = getMany('q-contact');
-  const rdv = getOne('q-rdv');
-  const fact = getOne('q-fact');
-  const presence = getMany('q-presence');
-  const crm = getOne('q-crm');
-  const paie = getMany('q-paie');
-  const contenu = getMany('q-contenu');
-  const comdig = getMany('q-comdig');
-  const auto = getMany('q-auto');
-  const admin = getMany('q-admin');
-  const outiSpec = val('q-outil-specifique');
-  const feeling = getOne('q-feeling');
-  const budget = getOne('q-budget');
+function gMany(gid) {
+  var all = document.querySelectorAll('#' + gid + ' .opt.sel');
+  var r = [];
+  for (var i = 0; i < all.length; i++) r.push(all[i].textContent.trim());
+  return r;
+}
 
-  const hasWAB = contact.includes('WhatsApp Business');
-  const hasWAP = contact.includes('WhatsApp perso');
-  const waConfig = getMany('q-wa-config');
-  const hasWAConfig = waConfig.length && !waConfig.includes('basique') && !waConfig.includes('n'utilise pas');
-  const onboarding = getOne('q-onboarding');
-  const hasOnboarding = onboarding && onboarding.includes('structuré');
-  const ia = getMany('q-ia');
-  const hasIA = ia.length && !ia.includes('Non');
-  const hasRDVAuto = rdv === 'Outil de réservation en ligne';
-  const hasRDVPapier = rdv.includes('papier') || rdv.includes('appellent');
-  const hasLogiciel = fact === 'Logiciel de facturation';
-  const hasNoFact = fact === "Je n'en envoie pas encore";
-  const hasFBPro = presence.includes('Page Facebook professionnelle');
-  const hasIGPro = presence.includes('Compte Instagram pro');
-  const hasWebsite = presence.includes('Site web');
-  const hasCRM = crm.includes('Notion') || crm.includes('Excel');
-  const hasStripe = paie.includes('Stripe');
-  const hasEpuise = feeling.includes('Épuisé') || feeling.includes('Stressé');
+function gVal(id) {
+  var e = document.getElementById(id);
+  return e ? e.value.trim() : '';
+}
 
-  const central = getOne('q-central');
-  const process = getMany('q-process');
-  const vacances = getOne('q-vacances');
-  const hasCentral = central && !central.includes('tête') && !central.includes('Aucun');
-  const hasProcess = process.length && !process.includes('Rien');
-  const businessTourne = vacances.includes('tourne sans moi');
+function has(arr, str) {
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i].indexOf(str) > -1) return true;
+  }
+  return false;
+}
 
-  // Système actuel
-  const actuel = [
-    node('Contact client', contact.length ? contact.slice(0,2).join(', ') : 'Non défini', hasWAB ? 'ok' : (hasWAP ? 'warn' : 'miss')),
-    node('Prise de RDV', rdv || 'Non défini', hasRDVAuto ? 'ok' : (hasRDVPapier ? 'warn' : 'miss')),
-    node('Facturation', fact || 'Non définie', hasLogiciel ? 'ok' : (hasNoFact ? 'miss' : 'warn')),
-    node('Présence sociale', presence.length ? presence.slice(0,2).join(', ') : 'Aucune', (hasFBPro || hasIGPro) ? 'ok' : 'warn'),
-    node('Suivi clients', crm || 'Aucun', hasCRM ? 'ok' : 'miss'),
-    node('Outil central', central || 'Aucun', hasCentral ? (central.includes('Notion') ? 'ok' : 'warn') : 'miss'),
-    node('Process & templates', hasProcess ? process.slice(0,2).join(', ') : 'Aucun', hasProcess ? 'warn' : 'miss'),
-    node('Paiement en ligne', hasStripe ? 'Stripe' : (paie.length ? paie[0] : 'Non défini'), hasStripe ? 'ok' : 'warn'),
-    node('Autonomie du système', businessTourne ? 'Tourne sans vous' : 'Dépend de vous', businessTourne ? 'ok' : 'miss'),
-    node('Automatisation', auto.length && !auto.includes('Pas pour') ? auto[0] : 'Aucune', auto.length && !auto.includes('Pas pour') ? 'warn' : 'miss'),
-    node('Config. WhatsApp', hasWAConfig ? 'Messages auto + catalogue' : 'Non configuré', hasWAConfig ? 'ok' : (hasWAB ? 'warn' : 'miss')),
-    node('Accueil client', hasOnboarding ? 'Process structuré' : (onboarding ? onboarding.substring(0,30)+'...' : 'Non défini'), hasOnboarding ? 'ok' : 'warn'),
-    node('Intelligence artificielle', hasIA ? 'Déjà utilisée' : 'Non utilisée', hasIA ? 'warn' : 'miss'),
+function tab(id, btn) {
+  var panels = ['pa','pp','pb2','pc'];
+  for (var i = 0; i < panels.length; i++) {
+    document.getElementById(panels[i]).classList.remove('active');
+  }
+  var tabs = document.querySelectorAll('.mt');
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('sel');
+  document.getElementById('p' + id).classList.add('active');
+  btn.classList.add('sel');
+}
+
+function nd(label, sub, status) {
+  return '<div class="nd ' + status + '"><div class="nt">' + label + '</div><div class="ns">' + sub + '</div></div>';
+}
+
+function pb(title, desc, badge, color) {
+  return '<div class="pb"><div class="pd" style="background:' + color + '"></div><div><div class="pt">' + title + '</div><div class="ps">' + desc + '</div></div><div class="pg" style="background:' + color + '22;color:' + color + '">' + badge + '</div></div>';
+}
+
+function sendToFormspree(data) {
+  fetch('https://formspree.io/f/mnjlebyw', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+    body: JSON.stringify(data)
+  });
+}
+
+function genMap() {
+  var prenom = gVal('prenom') || 'vous';
+  var contact = gMany('g4');
+  var wacfg = gMany('g5');
+  var rdv = gOne('g6');
+  var fact = gOne('g7');
+  var web = gMany('g8');
+  var pay = gMany('g9');
+  var hub = gOne('g10');
+  var crm = gOne('g11');
+  var proc = gMany('g12');
+  var onb = gOne('g13');
+  var vac = gOne('g15');
+  var feel = gOne('g16');
+  var ia = gMany('g18');
+  var cnt = gMany('g19');
+  var com = gMany('g20');
+  var auto = gMany('g21');
+  var adm = gMany('g22');
+
+  var hasWAB = has(contact, 'WhatsApp Business');
+  var hasWAP = has(contact, 'WhatsApp perso');
+  var hasWACfg = wacfg.length > 0 && !has(wacfg, 'Rien') && !has(wacfg, "n'utilise pas");
+  var hasRDVAuto = rdv.indexOf('reservation en ligne') > -1;
+  var hasRDVPapier = rdv.indexOf('papier') > -1 || rdv.indexOf('appellent') > -1;
+  var hasLogiciel = fact.indexOf('Logiciel') > -1;
+  var hasNoFact = fact.indexOf('encore') > -1;
+  var hasFB = has(web, 'Facebook pro');
+  var hasIG = has(web, 'Instagram pro');
+  var hasSite = has(web, 'Site web');
+  var hasStripe = has(pay, 'Stripe');
+  var hasNotion = hub.indexOf('Notion') > -1;
+  var hasCRM = crm.indexOf('Notion') > -1 || crm.indexOf('Excel') > -1;
+  var hasProc = proc.length > 0 && !has(proc, 'Rien');
+  var hasOnb = onb.indexOf('structure') > -1;
+  var tourneSeul = vac.indexOf('tourne sans moi') > -1;
+  var hasEpuise = feel.indexOf('Epuise') > -1 || feel.indexOf('Stresse') > -1;
+  var hasIA = ia.length > 0 && !has(ia, 'Non');
+
+  var actuel = [
+    nd('Contact client', contact.length ? contact.slice(0,2).join(', ') : 'Non defini', hasWAB ? 'ok' : (hasWAP ? 'warn' : 'miss')),
+    nd('Config WhatsApp', hasWACfg ? 'Messages auto + catalogue' : (hasWAB ? 'Non optimise' : 'Non utilise'), hasWACfg ? 'ok' : (hasWAB ? 'warn' : 'miss')),
+    nd('Prise de RDV', rdv || 'Non defini', hasRDVAuto ? 'ok' : (hasRDVPapier ? 'warn' : 'miss')),
+    nd('Facturation', fact || 'Non definie', hasLogiciel ? 'ok' : (hasNoFact ? 'miss' : 'warn')),
+    nd('Presence sociale', (hasFB || hasIG) ? 'Page pro configuree' : 'Limitee', (hasFB || hasIG) ? 'ok' : 'warn'),
+    nd('Site web', hasSite ? 'En place' : 'Absent', hasSite ? 'ok' : 'miss'),
+    nd('Outil central', hub || 'Aucun', hasNotion ? 'ok' : (hub && hub.indexOf('tete') < 0 && hub.indexOf('Aucun') < 0 ? 'warn' : 'miss')),
+    nd('Suivi clients', crm || 'Aucun', hasCRM ? 'ok' : 'miss'),
+    nd('Process et templates', hasProc ? proc[0] : 'Aucun', hasProc ? 'warn' : 'miss'),
+    nd('Accueil client', hasOnb ? 'Structure' : (onb || 'Non defini'), hasOnb ? 'ok' : 'warn'),
+    nd('Paiement en ligne', hasStripe ? 'Stripe' : (pay.length ? pay[0] : 'Non defini'), hasStripe ? 'ok' : 'warn'),
+    nd('Autonomie systeme', tourneSeul ? 'Tourne sans vous' : 'Depend de vous', tourneSeul ? 'ok' : 'miss')
   ];
-  document.getElementById('nodes-actuel').innerHTML = actuel.join('');
+  document.getElementById('na').innerHTML = actuel.join('');
 
-  // Problèmes
-  const probs = [];
-  if(hasWAP && !hasWAB) probs.push(prob('WhatsApp perso = pro', 'Vie privée mélangée, pas de catalogue, pas de messages automatiques. Image peu professionnelle.', 'Urgent', '#ee07a5'));
-  if(hasRDVPapier) probs.push(prob('Zéro automatisation des RDV', 'Risque d\'oubli, pas de rappels, réservations manuelles qui vous font perdre du temps.', 'Urgent', '#ee07a5'));
-  if(hasNoFact) probs.push(prob('Pas de facturation en place', 'Risque fiscal et image peu professionnelle. À régulariser en priorité.', 'Urgent', '#ee07a5'));
-  if(!hasCRM) probs.push(prob('Aucun suivi client structuré', 'Tout dans la tête ou sur papier — impossible de relancer ou de personnaliser le suivi.', 'Moyen', '#BA7517'));
-  if(!hasFBPro && !hasIGPro) probs.push(prob('Pas de présence professionnelle', 'Impossible de lancer des publicités ou d\'être trouvé·e facilement.', 'Moyen', '#BA7517'));
-  if(hasEpuise) probs.push(prob('Charge mentale élevée', 'Le volume de tâches non structurées génère un épuisement qui freine la croissance.', 'À traiter', '#7b9a80'));
-  if(probs.length === 0) probs.push(prob('Base solide !', 'Votre système est déjà structuré. On peut maintenant l\'optimiser et l\'automatiser.', '✓', '#1D9E75'));
-  document.getElementById('nodes-problemes').innerHTML = probs.join('');
+  var probs = [];
+  if (hasWAP && !hasWAB) probs.push(pb('WhatsApp perso utilise en pro', 'Vie privee melangee, pas de catalogue ni de messages automatiques.', 'Urgent', '#ee07a5'));
+  if (hasWAB && !hasWACfg) probs.push(pb('WhatsApp Business non optimise', 'Vous avez le bon outil mais son potentiel n\'est pas exploite.', 'Moyen', '#BA7517'));
+  if (hasRDVPapier) probs.push(pb('Zero automatisation des RDV', 'Risque d\'oubli, pas de rappels, reservations manuelles chronophages.', 'Urgent', '#ee07a5'));
+  if (hasNoFact) probs.push(pb('Pas de facturation en place', 'Risque fiscal et image peu professionnelle.', 'Urgent', '#ee07a5'));
+  if (!hasCRM) probs.push(pb('Aucun suivi client structure', 'Tout dans la tete — impossible de relancer ou personnaliser.', 'Moyen', '#BA7517'));
+  if (!hasProc) probs.push(pb('Pas de process ni de templates', 'Chaque action refaite from scratch. Dependance totale a votre presence.', 'Fondamental', '#ee07a5'));
+  if (!hasOnb) probs.push(pb('Pas de process d\'accueil client', 'Chaque nouveau client est gere differemment.', 'Moyen', '#BA7517'));
+  if (!tourneSeul) probs.push(pb('Business dependant de votre presence', 'Si vous vous arretez, tout s\'arrete. L\'objectif : un systeme qui tourne sans vous.', 'A traiter', '#7b9a80'));
+  if (hasEpuise) probs.push(pb('Charge mentale elevee', 'Le volume de taches non structurees freine la croissance.', 'A traiter', '#7b9a80'));
+  if (probs.length === 0) probs.push(pb('Bonne base digitale !', 'Votre systeme est deja structure. On peut l\'optimiser et l\'automatiser.', 'OK', '#1D9E75'));
+  document.getElementById('np').innerHTML = probs.join('');
 
-  // Besoins complémentaires
-  const besoins = [];
-  if(contenu.length && !contenu.includes('Pas pour') && !contenu.includes('déjà')) {
-    besoins.push(prob('Création de contenu', contenu.filter(c=>!c.includes('Non')).join(', '), 'Identifié', '#7b9a80'));
-  }
-  if(comdig.length && !comdig.includes('Pas pour')) {
-    besoins.push(prob('Communication digitale', comdig.join(', '), 'Identifié', '#7b9a80'));
-  }
-  if(auto.length && !auto.includes('Pas pour')) {
-    besoins.push(prob('Automatisation & IA', auto.filter(a=>!a.includes('Pas')).join(', '), 'Identifié', '#ee07a5'));
-  }
-  if(admin.length && !admin.includes('Non, je gère')) {
-    besoins.push(prob('Accompagnement admin', admin.filter(a=>!a.includes('Non')).join(', '), 'Identifié', '#d8c79e'));
-  }
-  if(outiSpec) {
-    besoins.push(prob('Outil spécifique mentionné', outiSpec, 'À explorer', '#b5c1a6'));
-  }
-  if(besoins.length === 0) {
-    besoins.push(prob('Aucun besoin complémentaire identifié', 'On se concentre sur la structuration de votre écosystème principal.', '✓', '#1D9E75'));
-  }
-  document.getElementById('nodes-besoins').innerHTML = besoins.join('');
+  var besoins = [];
+  if (hasIA) besoins.push(pb('Intelligence artificielle', 'Deja utilise — a approfondir et automatiser.', 'Identifie', '#ee07a5'));
+  if (cnt.length > 0 && !has(cnt, 'Non')) besoins.push(pb('Creation de contenu', cnt.filter(function(c){return c.indexOf('Non')<0;}).join(', '), 'Identifie', '#7b9a80'));
+  if (com.length > 0 && !has(com, 'Non')) besoins.push(pb('Communication digitale', com.filter(function(c){return c.indexOf('Non')<0;}).join(', '), 'Identifie', '#7b9a80'));
+  if (auto.length > 0 && !has(auto, 'Non')) besoins.push(pb('Automatisation', auto.filter(function(a){return a.indexOf('Non')<0;}).join(', '), 'Identifie', '#d8c79e'));
+  if (adm.length > 0 && !has(adm, 'Non je gere')) besoins.push(pb('Accompagnement admin', adm.filter(function(a){return a.indexOf('Non')<0;}).join(', '), 'Identifie', '#d8c79e'));
+  var outiSpec = gVal('outil');
+  if (outiSpec) besoins.push(pb('Outil specifique mentionne', outiSpec, 'A explorer', '#b5c1a6'));
+  if (besoins.length === 0) besoins.push(pb('Aucun besoin complementaire identifie', 'Focus sur la structuration de l\'ecosysteme principal.', 'OK', '#1D9E75'));
+  document.getElementById('nb').innerHTML = besoins.join('');
 
-  // Système cible
-  const cible = [
-    node('✓ WhatsApp Business', 'Profil pro + scripts + catalogue', 'ok'),
-    node('✓ Réservation automatique', 'Calendly + rappels automatiques', 'ok'),
-    node('✓ Facturation pro', 'Logiciel dédié + suivi paiements', 'ok'),
-    node('✓ Présence professionnelle', 'Page Facebook + Instagram pro', 'ok'),
-    node('✓ CRM Notion', 'Suivi clients + historique + relances', 'ok'),
-    node('✓ Site web', 'Vitrine pro + formulaire contact', 'ok'),
-    node('✓ Paiement en ligne', 'Stripe + lien de paiement', 'ok'),
-    node('✓ Automatisation', 'Relances + flux + synchro outils', 'ok'),
+  var cible = [
+    nd('OK WhatsApp Business', 'Profil pro + scripts + catalogue', 'ok'),
+    nd('OK Config WhatsApp', 'Messages auto + etiquettes + absence', 'ok'),
+    nd('OK Reservation automatique', 'Calendly + rappels auto', 'ok'),
+    nd('OK Facturation pro', 'Logiciel dedie + suivi paiements', 'ok'),
+    nd('OK Presence professionnelle', 'Facebook + Instagram pro', 'ok'),
+    nd('OK Site web', 'Vitrine pro + formulaire', 'ok'),
+    nd('OK Notion central', 'Taches + projets + clients', 'ok'),
+    nd('OK CRM structure', 'Suivi + historique + relances', 'ok'),
+    nd('OK Process et templates', 'Checklists + modeles prets', 'ok'),
+    nd('OK Onboarding client', 'Process d\'accueil structure', 'ok'),
+    nd('OK Paiement en ligne', 'Stripe + lien de paiement', 'ok'),
+    nd('OK Automatisation', 'Relances + flux + synchro outils', 'ok')
   ];
-  document.getElementById('nodes-cible').innerHTML = cible.join('');
+  document.getElementById('nc').innerHTML = cible.join('');
 
-  // Teasing priorités (flou)
-  const prios = [];
-  if(hasWAP && !hasWAB) prios.push('Structurer votre présence WhatsApp professionnelle');
-  if(hasRDVPapier) prios.push('Automatiser votre prise de rendez-vous');
-  if(!hasCRM) prios.push('Mettre en place un suivi client qui tourne seul');
-  if(prios.length < 3) prios.push('Optimiser votre communication digitale');
-  if(prios.length < 3) prios.push('Automatiser vos flux et relances');
-
-  document.getElementById('res-prenom').textContent = prenom + ' —';
-  const el2 = document.getElementById('res-prenom2');
-  if(el2) el2.textContent = prenom;
-  document.getElementById('step-6').classList.remove('active');
+  document.getElementById('rnom').textContent = prenom + ' —';
+  document.getElementById('rnom2').textContent = prenom;
+  document.getElementById('s' + cur).classList.remove('active');
   document.getElementById('result').style.display = 'block';
-  document.getElementById('prog-fill').style.width = '100%';
-  document.getElementById('prog-txt').textContent = 'Mapping généré ✓';
-  window.scrollTo(0,0);
+  document.getElementById('pbar').style.width = '100%';
+  document.getElementById('plbl').textContent = 'Mapping genere OK';
+  window.scrollTo(0, 0);
+
+  // Envoi vers Formspree
+  sendToFormspree({
+    'Prenom': prenom,
+    'Metier': gVal('metier'),
+    'Email': gVal('email'),
+    'Contact client': contact.join(', '),
+    'Config WhatsApp': wacfg.join(', '),
+    'Prise de RDV': rdv,
+    'Facturation': fact,
+    'Presence web': web.join(', '),
+    'Paiement': pay.join(', '),
+    'Outil central': hub,
+    'Suivi clients CRM': crm,
+    'Process et templates': proc.join(', '),
+    'Accueil client': onb,
+    'Vacances systeme': vac,
+    'Ressenti dimanche': feel,
+    'Objectif 3 mois': gOne('g17'),
+    'Declencheur': gVal('declencheur'),
+    'Deleguer': gVal('deleguer'),
+    'Vision business': gVal('vision'),
+    'IA': ia.join(', '),
+    'Contenu': cnt.join(', '),
+    'Communication digitale': com.join(', '),
+    'Automatisation': auto.join(', '),
+    'Admin juridique': adm.join(', '),
+    'Outil specifique': gVal('outil'),
+    'Budget': gOne('g24'),
+    'Timing demarrage': gOne('g25'),
+    'Experience AV': gOne('g23'),
+    'Libre': gVal('libre')
+  });
 }
 </script>
 </body>
