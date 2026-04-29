@@ -576,13 +576,9 @@ function pb(title, desc, badge, color) {
 }
 
 function sendToFormspree(data) {
-  data['access_key'] = '6966c075-c38f-48c3-ba65-36b2c80a95e0';
-  data['subject'] = 'Nouveau questionnaire - ' + (data['Prenom'] || 'Client') + ' - Nendy Services';
-  data['from_name'] = 'Nendy Services Questionnaire';
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'https://api.web3forms.com/submit', true);
+  xhr.open('POST', 'https://script.google.com/macros/s/AKfycbyHeQjBaZnIp_bXUbxxXile9b3OCr1mqgfq8_uvZREuKYKzUTM8kSDsttHoMkAjbWWY/exec', true);
   xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.setRequestHeader('Accept', 'application/json');
   xhr.send(JSON.stringify(data));
 }
 
